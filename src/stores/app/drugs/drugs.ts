@@ -97,8 +97,6 @@ export const useDrugsStore = defineStore({
         throw new Error(data.message);
       }
 
-      // this.storeUsers(users);
-
       this.drugs = [...drugs];
       return drugs;
     },

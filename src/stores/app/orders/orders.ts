@@ -8,16 +8,20 @@ import { ORDERS_ATTRIBUTES } from "@/constants/orders";
 import { useTokenStore } from "@/stores/utils";
 import { SUCCESS } from "@/constants/response";
 import { BASE_URL } from "@/constants/url";
+import _ from "lodash";
 
 const ORDERS: OrdersDto[] = [];
+const ORDER_STATUS: string[] = [];
 
 export const useOrdersStore = defineStore({
   id: "orders",
   state: () => ({
     orders: [...ORDERS],
+    orderStatus: [...ORDER_STATUS],
   }),
   getters: {
     ordersHasValue: (state) => state.orders.length > 0,
+    orderStatusHasValue: (state) => state.orderStatus.length > 0,
     getLoadedOrders: (state) => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -80,6 +84,31 @@ export const useOrdersStore = defineStore({
 
       this.orders = [...orders];
       return orders;
+    },
+    loadOrderStatuses: async function () {
+      const response = await fetch(`${BASE_URL}/orders?resource=status`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.message === "Unauthorized") {
+          throw new Error(data.message + "! Failed to fetch order's status !");
+        }
+        throw new Error(data.message);
+      }
+
+      [...(data as string[])].forEach((item) => {
+        if (_.has(this.orderStatus, item))
+          this.orderStatus.push(_.startCase(item));
+      });
+
+      return data;
     },
     loadOrderById: async function (orderId: string): Promise<OrdersDto> {
       const response = await fetch(`${BASE_URL}/orders/${orderId}`, {

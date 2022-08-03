@@ -1,5 +1,5 @@
 <template>
-  <section class="update-user-view">
+  <section class="update-inventory-view">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />
@@ -25,7 +25,7 @@
             :icon="INVENTORY_ICON"
             :to="`/inventory/`"
             color="info"
-            name="users"
+            name="inventory"
             role="button"
             text="View inventory"
           />

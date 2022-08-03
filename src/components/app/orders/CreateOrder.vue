@@ -157,6 +157,7 @@ const validateForm = (form: HTMLFormElement) => {
 
   if (!DrugId.value) {
     DrugIdEl.classList.add("is-invalid");
+    validOrderObj.DrugId = false;
   } else {
     DrugIdEl.classList.remove("is-invalid");
     validOrderObj.DrugId = true;
@@ -168,6 +169,7 @@ const validateForm = (form: HTMLFormElement) => {
 
   if (!SupplierId.value) {
     SupplierIdEl.classList.add("is-invalid");
+    validOrderObj.SupplierId = false;
   } else {
     SupplierIdEl.classList.remove("is-invalid");
     validOrderObj.SupplierId = true;

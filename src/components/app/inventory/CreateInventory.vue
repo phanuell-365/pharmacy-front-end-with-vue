@@ -135,16 +135,6 @@ const drugsStore = useDrugsStore();
 const drugs: Ref<DrugDto[]> = ref([]);
 const drugIssueUnits: Ref<string[]> = ref([]);
 
-// validity of the form inputs and select options
-const validInventoryObj = reactive({
-  issueUnitPrice: false,
-  issueUnitPerPackSize: false,
-  packSize: false,
-  packSizePrice: false,
-  expirationDate: false,
-  DrugId: false,
-});
-
 const error = reactive({
   errorState: false,
   message: "",
@@ -194,6 +184,16 @@ const packSizeInvalidFeedback = ref<string | undefined>(
 const expirationDateInvalidFeedback = ref<string | undefined>(
   "Please enter an expiration date"
 );
+
+// validity of the form inputs and select options
+const validInventoryObj = reactive({
+  issueUnitPrice: false,
+  issueUnitPerPackSize: false,
+  packSize: false,
+  packSizePrice: false,
+  expirationDate: false,
+  DrugId: false,
+});
 
 const validateForm = (form: HTMLFormElement) => {
   // the issue unit price element
@@ -347,7 +347,7 @@ const onFormSubmitHandler = async (event: Event) => {
     toastRefDanger.value?.toastText(`An error occurred! ${error.message}`);
     toastRefDanger.value?.toastElapsedDuration("Just now");
     toastRefDanger.value?.toastHeading("Error");
-    toastRefDanger.value?.toastName("drug-create-error");
+    toastRefDanger.value?.toastName("inventory-create-error");
     toastRefDanger.value?.show();
   }
 };

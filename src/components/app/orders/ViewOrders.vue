@@ -43,7 +43,7 @@ import {
   routeEndPointKey,
   routeStartPointKey,
 } from "@/keys";
-import { EDIT_ICON, INVENTORY_ICON } from "@/constants/icons";
+import { EDIT_ORDER_ICON, ORDERS_ICON } from "@/constants/icons";
 import { useRouter } from "vue-router";
 import { useOrdersStore } from "@/stores/app/orders";
 import type { OrdersDto } from "@/interfaces/orders";
@@ -66,8 +66,8 @@ const activeMenu = menuStore.getActiveMenuName;
 // provide icons and button name for the clickable table
 // they're injected in the clickable table
 provide(buttonNameKey, activeMenu);
-provide(buttonEditIconKey, EDIT_ICON);
-provide(buttonViewIconKey, INVENTORY_ICON);
+provide(buttonEditIconKey, EDIT_ORDER_ICON);
+provide(buttonViewIconKey, ORDERS_ICON);
 
 interface ViewOrdersProps {
   clickable?: boolean;

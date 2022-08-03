@@ -7,7 +7,7 @@
       <FormPlaceholder />
     </div>
     <div v-else-if="!error.errorState">
-      <DisabledForm :record="inventory" />
+      <DisabledForm :record="formattedInventory" />
     </div>
     <Teleport to="body">
       <SimpleModal ref="modalRef" danger static-backdrop>
@@ -55,10 +55,13 @@ const drug: Ref<DrugDto | undefined> = ref();
 const isLoading = ref(false);
 
 const formattedInventory = reactive({
+  id: "",
   issueUnitPrice: 0,
   issueUnitPerPackSize: 0,
+  issueQuantity: 0,
   packSize: "",
   packSizePrice: 0,
+  packSizeQuantity: 0,
   expirationDate: "",
   Drug: "",
 });
@@ -73,11 +76,14 @@ onMounted(async () => {
     isLoading.value = true;
     inventory.value = await inventoryStore.loadInventoryById(props.inventoryId);
     drug.value = await drugsStore.loadDrugById(inventory.value?.DrugId);
+    formattedInventory.id = inventory.value?.id;
     formattedInventory.issueUnitPrice = inventory.value?.issueUnitPrice;
     formattedInventory.issueUnitPerPackSize =
       inventory.value?.issueUnitPerPackSize;
+    formattedInventory.issueQuantity = inventory.value?.issueQuantity;
     formattedInventory.packSize = inventory.value?.packSize;
     formattedInventory.packSizePrice = inventory.value?.packSizePrice;
+    formattedInventory.packSizeQuantity = inventory.value?.packSizeQuantity;
     formattedInventory.expirationDate = new Date(
       inventory.value?.expirationDate
     ).toLocaleDateString();

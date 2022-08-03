@@ -4,28 +4,28 @@
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />
       </template>
-      <template #heading>Inventory</template>
+      <template #heading>Order</template>
       <template #body>
-        <ViewInventory :inventory-id="props.id" />
+        <ViewOrder :order-id="props.id" />
       </template>
       <template #footer>
         <div class="btn-group">
           <ButtonIcon
-            :icon="INVENTORY_ICON"
+            :icon="ORDERS_ICON"
             color="primary"
-            name="inventory"
+            name="order"
             outline
             role="button"
-            text="Create Inventory"
-            to="/inventory/create"
+            text="Create Order"
+            to="/orders/create"
           />
           <ButtonIcon
-            :icon="EDIT_INVENTORY_ICON"
-            :to="`/inventory/${props.id}/update`"
+            :icon="EDIT_ORDER_ICON"
+            :to="`/orders/${props.id}/update`"
             color="secondary"
-            name="inventory"
+            name="order"
             role="button"
-            text="Update Inventory"
+            text="Update Order"
           />
         </div>
       </template>
@@ -37,10 +37,10 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
-import ViewInventory from "@/components/app/inventory/ViewInventory.vue";
+import ViewOrder from "@/components/app/orders/ViewOrder.vue";
 import { useMenuStore } from "@/stores/menu";
 import { onBeforeRouteLeave, useRoute } from "vue-router";
-import { EDIT_INVENTORY_ICON, INVENTORY_ICON } from "@/constants/icons";
+import { EDIT_ORDER_ICON, ORDERS_ICON } from "@/constants/icons";
 
 const menuStore = useMenuStore();
 
@@ -48,13 +48,13 @@ const route = useRoute();
 
 const routeName = String(route.name);
 
-menuStore.activateSubMenu("inventory", routeName);
+menuStore.activateSubMenu("orders", routeName);
 
-interface InventoryViewProps {
+interface OrderViewProps {
   id: string;
 }
 
-const props = defineProps<InventoryViewProps>();
+const props = defineProps<OrderViewProps>();
 
 onBeforeRouteLeave((to, from) => {
   const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");

@@ -4,7 +4,6 @@ import {
   ORDERS_ICON,
 } from "@/constants/icons";
 import type { Submenu } from "@/stores/menu/interfaces";
-import { UNDEF } from "@/constants/routes";
 
 export const ordersSubmenu: Submenu[] = [
   {
@@ -26,8 +25,8 @@ export const ordersSubmenu: Submenu[] = [
   {
     desc: "Update an order",
     name: "update",
-    href: `/orders/${UNDEF}/update`,
-    routeName: "update-order",
+    href: `/orders/update`,
+    routeName: "update-orders",
     ico: EDIT_ORDER_ICON,
     active: false,
   },

@@ -4,7 +4,7 @@
     to="/users"
   >
     <i class="fa-solid fa-clinic-medical fs-1 p-2"></i>
-    <span class="fs-4">ResTech</span>
+    <span class="fs-4">ResTechs</span>
   </RouterLink>
   <section class="mt-3">
     <SidebarBody :menus="menus" />

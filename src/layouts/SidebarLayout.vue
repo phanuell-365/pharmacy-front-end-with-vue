@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import CardLayout from "./CardLayout";
+import CardLayout from "./CardLayout.vue";
 </script>
 
 <style scoped>

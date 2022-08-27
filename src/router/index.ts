@@ -1,22 +1,40 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: "/",
-    //   name: "home",
-    //   component: HomeView,
-    // },
-    // {
-    //   path: "/about",
-    //   name: "about",
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   // component: () => import("../views/AboutView.vue"),
-    // },
+    {
+      path: "/users",
+      name: "view-users",
+      component: () => import("../views/users/UsersView.vue"),
+    },
+    {
+      path: "/users/create",
+      name: "create-user",
+      component: () => import("../views/users/CreateView.vue"),
+    },
+    {
+      path: "/users/:id/update",
+      name: "update-user",
+      component: () => import("../views/users/id/UpdateUserView.vue"),
+      props: true,
+    },
+    {
+      path: "/drugs",
+      name: "view-drugs",
+      component: () => import("../views/drugs/DrugsView.vue"),
+    },
+    {
+      path: "/drugs/create",
+      name: "create-drug",
+      component: () => import("../views/drugs/CreateView.vue"),
+    },
+    {
+      path: "/drugs/:id/update",
+      name: "update-drug",
+      component: () => import("../views/drugs/id/UpdateDrugView.vue"),
+      props: true,
+    },
   ],
 });
 

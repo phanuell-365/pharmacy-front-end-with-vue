@@ -1,10 +1,14 @@
 import { defineStore } from "pinia";
-import { drugsMainMenu, usersMainMenu } from "@/stores/menu/data";
+import {
+  drugsMainMenu,
+  patientsMainMenu,
+  usersMainMenu,
+} from "@/stores/menu/data";
 
 export const useMenuStore = defineStore({
   id: "menu",
   state: () => ({
-    menu: [usersMainMenu, drugsMainMenu],
+    menu: [usersMainMenu, drugsMainMenu, patientsMainMenu],
   }),
   getters: {
     getActiveMenu: (state) => state.menu,
@@ -15,7 +19,7 @@ export const useMenuStore = defineStore({
      * @param menuName
      * @param subMenuName provide the submenu's name or it's route name
      */
-    activateSubMenu: function(menuName: string, subMenuName: string) {
+    activateSubMenu: function (menuName: string, subMenuName: string) {
       // deactivate all the menus
       this.menu.forEach((aMenu) => {
         aMenu.active = false;
@@ -48,6 +52,6 @@ export const useMenuStore = defineStore({
           if (reqSubmenuByRouteName) reqSubmenuByRouteName.active = true;
         }
       }
-    }
-  }
+    },
+  },
 });

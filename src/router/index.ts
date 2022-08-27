@@ -35,6 +35,22 @@ const router = createRouter({
       component: () => import("../views/drugs/id/UpdateDrugView.vue"),
       props: true,
     },
+    {
+      path: "/patients",
+      name: "view-patients",
+      component: () => import("../views/patients/PatientsView.vue"),
+    },
+    {
+      path: "/patients/create",
+      name: "create-drug",
+      component: () => import("../views/patients/CreateView.vue"),
+    },
+    {
+      path: "/patients/:id/update",
+      name: "update-drug",
+      component: () => import("../views/patients/id/UpdatePatientView.vue"),
+      props: true,
+    },
   ],
 });
 

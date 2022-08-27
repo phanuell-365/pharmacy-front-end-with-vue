@@ -2,13 +2,14 @@ import { defineStore } from "pinia";
 import {
   drugsMainMenu,
   patientsMainMenu,
+  suppliersMainMenu,
   usersMainMenu,
 } from "@/stores/menu/data";
 
 export const useMenuStore = defineStore({
   id: "menu",
   state: () => ({
-    menu: [usersMainMenu, drugsMainMenu, patientsMainMenu],
+    menu: [usersMainMenu, drugsMainMenu, patientsMainMenu, suppliersMainMenu],
   }),
   getters: {
     getActiveMenu: (state) => state.menu,

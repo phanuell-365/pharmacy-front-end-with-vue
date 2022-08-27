@@ -115,6 +115,22 @@ const router = createRouter({
       component: () => import("../views/supplies/id/UpdateSupplyView.vue"),
       props: true,
     },
+    {
+      path: "/sales",
+      name: "view-sales",
+      component: () => import("../views/sales/SalesView.vue"),
+    },
+    {
+      path: "/sales/create",
+      name: "create-sale",
+      component: () => import("../views/sales/CreateView.vue"),
+    },
+    {
+      path: "/sales/:id/update",
+      name: "update-sale",
+      component: () => import("../views/sales/id/UpdateSaleView.vue"),
+      props: true,
+    },
   ],
 });
 

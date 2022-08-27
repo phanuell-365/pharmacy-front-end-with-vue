@@ -4,6 +4,7 @@ import {
   inventoryMainMenu,
   ordersMainMenu,
   patientsMainMenu,
+  salesMainMenu,
   suppliersMainMenu,
   suppliesMainMenu,
   usersMainMenu,
@@ -20,6 +21,7 @@ export const useMenuStore = defineStore({
       inventoryMainMenu,
       ordersMainMenu,
       suppliesMainMenu,
+      salesMainMenu,
     ],
   }),
   getters: {

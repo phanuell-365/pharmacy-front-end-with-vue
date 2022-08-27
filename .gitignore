@@ -26,7 +26,8 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-!/src/assets/css/all.css
-!/src/assets/css/bootstrap.min.css
-!/src/assets/webfonts/
-!/src/assets/js/bootstrap.js
+/src/assets/css/all.css
+/src/assets/css/bootstrap.min.css
+/src/assets/webfonts/
+/src/assets/js/bootstrap.js
+/src/views/suppliers/id/UpdateSupplierView.vue

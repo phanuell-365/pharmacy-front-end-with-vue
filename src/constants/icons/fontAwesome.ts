@@ -19,7 +19,7 @@ export const EDIT_SUPPLY_ICON = "fa-solid fa-cart-plus";
 export const NEW_SUPPLY_ICON = "fa-solid fa-dolly";
 
 export const ORDERS_ICON = "fas fa-shopping-cart";
-export const NEW_ORDER_ICON = "fa-solid fa-cart-down-arrow";
+export const NEW_ORDER_ICON = "fa-solid fa-cart-arrow-down";
 export const EDIT_ORDER_ICON = "fa-solid fa-cart-plus";
 
 export const SALES_ICON = "fa-solid fa-money-bill-wave";

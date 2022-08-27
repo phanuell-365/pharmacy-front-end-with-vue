@@ -24,7 +24,7 @@ export const inventorySubmenu: Submenu[] = [
     active: false,
   },
   {
-    desc: "Update a inventory",
+    desc: "Update an inventory",
     name: "update",
     href: `/inventory/${UNDEF}/update`,
     routeName: "update-inventory",

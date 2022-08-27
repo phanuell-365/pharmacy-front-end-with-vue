@@ -24,10 +24,10 @@ export const suppliersSubmenu: Submenu[] = [
     active: false,
   },
   {
-    desc: "Update a suppliers",
+    desc: "Update a supplier",
     name: "supplier",
     href: `/suppliers/${UNDEF}/update`,
-    routeName: "update-suppliers",
+    routeName: "update-supplier",
     ico: EDIT_SUPPLIERS_ICON,
     active: false,
   },

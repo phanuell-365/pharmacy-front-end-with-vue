@@ -24,10 +24,10 @@ export const patientsSubmenu: Submenu[] = [
     active: false,
   },
   {
-    desc: "Update a patients",
+    desc: "Update a patient",
     name: "update",
     href: `/patients/${UNDEF}/update`,
-    routeName: "update-patients",
+    routeName: "update-patient",
     ico: EDIT_USER_ICON,
     active: false,
   },

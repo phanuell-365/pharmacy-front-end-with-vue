@@ -2,8 +2,10 @@ import { defineStore } from "pinia";
 import {
   drugsMainMenu,
   inventoryMainMenu,
+  ordersMainMenu,
   patientsMainMenu,
   suppliersMainMenu,
+  suppliesMainMenu,
   usersMainMenu,
 } from "@/stores/menu/data";
 
@@ -16,6 +18,8 @@ export const useMenuStore = defineStore({
       patientsMainMenu,
       suppliersMainMenu,
       inventoryMainMenu,
+      ordersMainMenu,
+      suppliesMainMenu,
     ],
   }),
   getters: {

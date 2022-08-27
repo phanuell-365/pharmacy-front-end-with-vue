@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import {
   drugsMainMenu,
+  inventoryMainMenu,
   patientsMainMenu,
   suppliersMainMenu,
   usersMainMenu,
@@ -9,7 +10,13 @@ import {
 export const useMenuStore = defineStore({
   id: "menu",
   state: () => ({
-    menu: [usersMainMenu, drugsMainMenu, patientsMainMenu, suppliersMainMenu],
+    menu: [
+      usersMainMenu,
+      drugsMainMenu,
+      patientsMainMenu,
+      suppliersMainMenu,
+      inventoryMainMenu,
+    ],
   }),
   getters: {
     getActiveMenu: (state) => state.menu,

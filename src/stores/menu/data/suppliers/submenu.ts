@@ -1,5 +1,5 @@
 import {
-  EDIT_USER_ICON,
+  EDIT_SUPPLIERS_ICON,
   NEW_SUPPLIERS_ICON,
   SUPPLIERS_ICON,
 } from "@/constants/icons";
@@ -28,7 +28,7 @@ export const suppliersSubmenu: Submenu[] = [
     name: "supplier",
     href: `/suppliers/${UNDEF}/update`,
     routeName: "update-suppliers",
-    ico: EDIT_USER_ICON,
+    ico: EDIT_SUPPLIERS_ICON,
     active: false,
   },
 ];

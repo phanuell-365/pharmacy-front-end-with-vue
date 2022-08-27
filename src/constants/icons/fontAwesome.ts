@@ -2,7 +2,8 @@ export const USERS_ICON = "fa-solid fa-hospital-user";
 export const PATIENTS_ICON = "fas fa-user-injured";
 
 export const SUPPLIERS_ICON = "fa-solid fa-truck";
-export const NEW_SUPPLIERS_ICON = "fa-solid fa-ambulance";
+export const NEW_SUPPLIERS_ICON = "fa-solid fa-shipping-fast";
+export const EDIT_SUPPLIERS_ICON = "fa-solid fa-ambulance";
 
 export const EDIT_ICON = "fa-solid fa-edit";
 
@@ -18,6 +19,7 @@ export const EDIT_SUPPLY_ICON = "fa-solid fa-cart-plus";
 export const NEW_SUPPLY_ICON = "fa-solid fa-dolly";
 
 export const ORDERS_ICON = "fas fa-shopping-cart";
+export const NEW_ORDER_ICON = "fa-solid fa-cart-down-arrow";
 export const EDIT_ORDER_ICON = "fa-solid fa-cart-plus";
 
 export const SALES_ICON = "fa-solid fa-money-bill-wave";

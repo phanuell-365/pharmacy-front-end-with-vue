@@ -94,7 +94,7 @@ import { defineAsyncComponent, onMounted, reactive, ref } from "vue";
 import { useUsersStore } from "@/stores/app/users";
 import { useRouter } from "vue-router";
 import type { NewUserDto } from "@/interfaces";
-import { useGetFormElement } from "@/composables/users/get-form-element";
+import { useGetFormElement } from "@/composables";
 
 const FormButton = defineAsyncComponent(
   () => import("@/components/form/FormButton.vue")
@@ -202,16 +202,17 @@ const onFormSubmitHandler = async (event: Event) => {
     // @ts-ignore
     const values = Object.values(payload);
 
-    const inValid = values.every((value: string) => value !== "");
+    const valid = values.every((value: string) => value !== "");
 
-    if (inValid) {
-      const success = await usersStore.createUser({
-        username: payload.username as string,
-        password: payload.password as string,
-        email: payload.email as string,
-        phone: payload.phone as string,
-        role: payload.role as string,
-      });
+    if (valid) {
+      // const success = await usersStore.createUser({
+      //   username: payload.username as string,
+      //   password: payload.password as string,
+      //   email: payload.email as string,
+      //   phone: payload.phone as string,
+      //   role: payload.role as string,
+      // });
+      const success = await usersStore.createUser({ ...payload });
 
       if (success) {
         toastRefInfo.value?.toastText("The user was created successfully!");
@@ -228,7 +229,7 @@ const onFormSubmitHandler = async (event: Event) => {
     toastRefDanger.value?.toastText(`An error occurred! ${error.message}`);
     toastRefDanger.value?.toastElapsedDuration("Just now");
     toastRefDanger.value?.toastHeading("Error");
-    toastRefDanger.value?.toastName("user-update-error");
+    toastRefDanger.value?.toastName("user-create-error");
     toastRefDanger.value?.show();
   }
 };

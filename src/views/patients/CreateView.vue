@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="create-view">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />

@@ -237,6 +237,16 @@ const onFormSubmitHandler = async (event: Event) => {
 const onHiddenBsToastHandlerInfo = () => {
   router.push("/users");
 };
+
+// do clean up for the modal
+const onHiddenBsModal = () => {
+  const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");
+
+  for (let modal = 0; modal < modalBackDrops.length; modal++) {
+    const modalEl = modalBackDrops[modal];
+    document.body.removeChild(modalEl);
+  }
+};
 </script>
 
 <style scoped></style>

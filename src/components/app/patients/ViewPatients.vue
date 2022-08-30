@@ -1,18 +1,14 @@
 <template>
   <section>
     <div>
-      <Teleport to="body">
-        <SimpleModal ref="modalRef" danger static-backdrop>
-          <template #buttons>
-            <ModalButton
-              color="info"
-              text="Login"
-              @click="onLoginClickButton"
-            />
-            <ModalButton color="danger" text="Cancel" @click="onCloseModal" />
-          </template>
-        </SimpleModal>
-      </Teleport>
+      <!--      <Teleport to="body">-->
+      <SimpleModal ref="modalRef" danger static-backdrop>
+        <template #buttons>
+          <ModalButton color="info" text="Login" @click="onLoginClickButton" />
+          <ModalButton color="danger" text="Cancel" @click="onCloseModal" />
+        </template>
+      </SimpleModal>
+      <!--      </Teleport>-->
     </div>
     <div v-if="isLoading">
       <TablePlaceholders />

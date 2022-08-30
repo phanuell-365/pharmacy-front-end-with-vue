@@ -8,7 +8,7 @@
         <span>Update Patient</span>
       </template>
       <template #body>
-        <UpdateUser :user-id="props.id" />
+        <UpdatePatient :patient-id="props.id" />
       </template>
       <template #footer>
         <div class="btn-group">
@@ -39,8 +39,9 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
+import UpdatePatient from "@/components/app/patients/UpdatePatient.vue";
 import { useMenuStore } from "@/stores/menu";
-import { useRoute } from "vue-router";
+import { onBeforeRouteLeave, useRoute } from "vue-router";
 import { NEW_USER_ICON, PATIENTS_ICON } from "@/constants/icons";
 
 const menuStore = useMenuStore();
@@ -56,6 +57,15 @@ interface UserViewProps {
 }
 
 const props = defineProps<UserViewProps>();
+
+onBeforeRouteLeave((to, from) => {
+  const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");
+
+  for (let modal = 0; modal < modalBackDrops.length; modal++) {
+    const modalEl = modalBackDrops[modal];
+    document.body.removeChild(modalEl);
+  }
+});
 </script>
 
 <style scoped></style>

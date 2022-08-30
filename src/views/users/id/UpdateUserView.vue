@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="update-user-view">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />
@@ -41,7 +41,7 @@ import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
 import UpdateUser from "@/components/app/users/UpdateUser.vue";
 import { useMenuStore } from "@/stores/menu";
-import { useRoute } from "vue-router";
+import { onBeforeRouteLeave, useRoute } from "vue-router";
 import { NEW_USER_ICON, USERS_ICON } from "@/constants/icons";
 
 const menuStore = useMenuStore();
@@ -57,6 +57,15 @@ interface UserViewProps {
 }
 
 const props = defineProps<UserViewProps>();
+
+onBeforeRouteLeave((to, from) => {
+  const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");
+
+  for (let modal = 0; modal < modalBackDrops.length; modal++) {
+    const modalEl = modalBackDrops[modal];
+    document.body.removeChild(modalEl);
+  }
+});
 </script>
 
 <style scoped></style>

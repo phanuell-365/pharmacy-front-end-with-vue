@@ -31,7 +31,15 @@
 <script lang="ts" setup>
 import { useUsersStore } from "@/stores/app/users";
 import { useMenuStore } from "@/stores/menu";
-import { defineAsyncComponent, onMounted, provide, reactive, ref } from "vue";
+import {
+  computed,
+  defineAsyncComponent,
+  onMounted,
+  onUnmounted,
+  provide,
+  reactive,
+  ref,
+} from "vue";
 import TheTable from "@/components/table/TheTable.vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
 import ModalButton from "@/components/modal/ModalButton.vue";
@@ -122,6 +130,14 @@ const onLoginClickButton = () => {
 const onCloseModal = () => {
   modalRef.value?.hide();
 };
+
+const renderTeleport = computed(() =>
+  props?.clickable ? ".update-users" : ".users-view"
+);
+
+onUnmounted(() => {
+  document.body;
+});
 </script>
 
 <style scoped></style>

@@ -6,13 +6,9 @@
       </SimpleModal>
     </Teleport>
     <div v-if="error.errorState">
-      <!--      <p class="display-5 text-danger">-->
-      <!--        An Error Occurred. {{ error.message }}-->
-      <!--      </p>-->
-
       <FormPlaceholder />
     </div>
-    <div v-if="isLoading">
+    <div v-else-if="isLoading">
       <FormPlaceholder />
     </div>
     <div v-else-if="!error.errorState">
@@ -84,18 +80,15 @@
       </form>
     </div>
     <Teleport to="body">
-      <SimpleModal ref="modalRef" :centered="false" static-backdrop>
+      <SimpleModal
+        ref="modalRef"
+        danger
+        static-backdrop
+        @on-hidden-bs-modal="onHiddenBsModal"
+      >
         <template #buttons>
-          <CloseButton
-            color="primary"
-            text="okay"
-            @oncloseclick="onCloseClickHandler"
-          />
-          <CloseButton
-            color="danger"
-            text="cancel"
-            @oncloseclick="onCloseClickHandler"
-          />
+          <ModalButton color="info" text="login" @click="onLoginClick" />
+          <ModalButton color="danger" text="cancel" @click="onCloseClick" />
         </template>
       </SimpleModal>
       <ToastContainer>
@@ -116,7 +109,6 @@ import { defineAsyncComponent, onMounted, reactive, ref } from "vue";
 import { useUsersStore } from "@/stores/app/users";
 import _ from "lodash";
 import type { UpdateUserDto } from "@/interfaces";
-import CloseButton from "@/components/modal/CloseButton.vue";
 import ToastContainer from "@/components/toast/ToastContainer.vue";
 import LiveToast from "@/components/toast/LiveToast.vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
@@ -179,7 +171,13 @@ onMounted(async () => {
     error.errorState = true;
     error.message = e.message;
 
-    if (!error.message.includes("Unauthorized")) {
+    if (error.message.includes("Unauthorized")) {
+      modalRef.value?.modalText(
+        "Have you just logged out? Login to continue ..."
+      );
+      modalRef.value?.modalTitle(error.message);
+      modalRef.value?.show();
+    } else if (!error.message.includes("Unauthorized")) {
       errorLoadingUserRef.value?.modalText(error.message);
       errorLoadingUserRef.value?.modalTitle("Error");
       errorLoadingUserRef.value?.show();
@@ -189,19 +187,22 @@ onMounted(async () => {
   }
 });
 
-const onCloseModal = (clickedButton: string) => {
-  modalRef.value?.hide();
+const onCloseModal = () => {
+  errorLoadingUserRef.value?.hide();
   router.back();
 };
 
-const clickedButton = ref();
+const onLoginClick = () => {
+  modalRef.value?.hide();
+  router.push("/login");
+};
+
+const onCloseClick = () => {
+  modalRef.value?.hide();
+};
 
 const toastRefDanger = ref<InstanceType<typeof LiveToast> | null>(null);
 const toastRefSuccess = ref<InstanceType<typeof LiveToast> | null>(null);
-
-const onCloseClickHandler = (clickedBtn: string) => {
-  clickedButton.value = clickedBtn;
-};
 
 const onFormSubmit = async () => {
   const payload: UpdateUserDto = {};

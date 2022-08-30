@@ -19,10 +19,13 @@
     </div>
     <div v-else-if="!error.errorState">
       <div v-if="clickable">
-        <ClickableTable :attributes="patientsAttributes" :records="patients" />
+        <ClickableTable
+          :attributes="suppliersAttributes"
+          :records="suppliers"
+        />
       </div>
       <div v-else>
-        <TheTable :attributes="patientsAttributes" :records="patients" />
+        <TheTable :attributes="suppliersAttributes" :records="suppliers" />
       </div>
     </div>
   </section>
@@ -33,6 +36,7 @@ import TheTable from "@/components/table/TheTable.vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
 import ModalButton from "@/components/modal/ModalButton.vue";
 import { useMenuStore } from "@/stores/menu";
+import { useSuppliersStore } from "@/stores/app/suppliers";
 import { useRouter } from "vue-router";
 import { defineAsyncComponent, onMounted, provide, reactive, ref } from "vue";
 import { EDIT_ICON, PATIENTS_ICON } from "@/constants/icons";
@@ -44,7 +48,6 @@ import {
   routeEndPointKey,
   routeStartPointKey,
 } from "@/keys";
-import { usePatientsStore } from "@/stores/app/patients";
 
 const TablePlaceholders = defineAsyncComponent(
   () => import("@/components/table/TablePlaceholders.vue")
@@ -57,7 +60,7 @@ const ClickableTable = defineAsyncComponent(
 const router = useRouter();
 
 const menuStore = useMenuStore();
-const patientsStore = usePatientsStore();
+const suppliersStore = useSuppliersStore();
 
 const activeMenu = menuStore.getActiveMenuName;
 
@@ -67,16 +70,16 @@ provide(buttonNameKey, activeMenu);
 provide(buttonEditIconKey, EDIT_ICON);
 provide(buttonViewIconKey, PATIENTS_ICON);
 
-interface ViewPatientsProps {
+interface ViewSupplierProps {
   clickable?: boolean;
   href?: string;
 }
 
-const props = defineProps<ViewPatientsProps>();
+const props = defineProps<ViewSupplierProps>();
 
 if (props.clickable) {
   provide(clickableKey, true);
-  provide(routeStartPointKey, "patients");
+  provide(routeStartPointKey, "suppliers");
   provide(routeEndPointKey, props.href);
 } else {
   provide(clickableKey, false);
@@ -88,16 +91,16 @@ const error = reactive({
 });
 
 const isLoading = ref(false);
-const patients = ref({});
-const patientsAttributes = ref({});
+const suppliers = ref({});
+const suppliersAttributes = ref({});
 
 const modalRef = ref<InstanceType<typeof SimpleModal> | null>(null);
 
 onMounted(async () => {
   try {
     isLoading.value = true;
-    patients.value = await patientsStore.loadPatients();
-    patientsAttributes.value = patientsStore.getPatientsAttributes;
+    suppliers.value = await suppliersStore.loadSuppliers();
+    suppliersAttributes.value = suppliersStore.getSuppliersAttributes;
     isLoading.value = false;
   } catch (e: any) {
     error.errorState = true;

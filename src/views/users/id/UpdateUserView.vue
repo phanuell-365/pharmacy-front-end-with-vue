@@ -39,7 +39,7 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
-import UpdateUser from "@/components/users/UpdateUser.vue";
+import UpdateUser from "@/components/app/users/UpdateUser.vue";
 import { useMenuStore } from "@/stores/menu";
 import { useRoute } from "vue-router";
 import { NEW_USER_ICON, USERS_ICON } from "@/constants/icons";

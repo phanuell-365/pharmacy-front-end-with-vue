@@ -27,7 +27,7 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
-import ViewPatients from "@/components/patients/ViewPatients.vue";
+import ViewPatients from "@/components/app/patients/ViewPatients.vue";
 import { NEW_USER_ICON } from "@/constants/icons";
 import { useMenuStore } from "@/stores/menu";
 import { useRoute } from "vue-router";

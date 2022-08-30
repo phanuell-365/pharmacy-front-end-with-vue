@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
-import CreateUser from "@/components/users/CreateUser.vue";
+import CreateUser from "@/components/app/users/CreateUser.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
 import { useMenuStore } from "@/stores/menu";
 import { useRoute } from "vue-router";

@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
-import ViewUsers from "@/components/users/ViewUsers.vue";
+import ViewUsers from "@/components/app/users/ViewUsers.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
 import { useMenuStore } from "@/stores/menu";
 import { useRoute } from "vue-router";

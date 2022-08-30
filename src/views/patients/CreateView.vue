@@ -29,7 +29,7 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
-import CreatePatient from "@/components/patients/CreatePatient.vue";
+import CreatePatient from "@/components/app/patients/CreatePatient.vue";
 import { PATIENTS_ICON } from "@/constants/icons";
 import { useMenuStore } from "@/stores/menu";
 import { useRoute } from "vue-router";

@@ -1,5 +1,44 @@
-<template></template>
+<template>
+  <section>
+    <SidebarLayout>
+      <template #sidebar>
+        <SidebarNavigation :menus="menuStore.menu" />
+      </template>
+      <template #heading>View all Patients</template>
+      <template #body>
+        <ViewPatients />
+      </template>
+      <template #footer>
+        <ButtonIcon
+          :icon="NEW_USER_ICON"
+          color="primary"
+          name="patients"
+          outline
+          role="button"
+          text="Create Patient"
+          to="/patients/create"
+        />
+      </template>
+    </SidebarLayout>
+  </section>
+</template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import SidebarLayout from "@/layouts/SidebarLayout.vue";
+import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
+import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
+import ViewPatients from "@/components/patients/ViewPatients.vue";
+import { NEW_USER_ICON } from "@/constants/icons";
+import { useMenuStore } from "@/stores/menu";
+import { useRoute } from "vue-router";
+
+const menuStore = useMenuStore();
+
+const route = useRoute();
+
+const routeName = String(route.name);
+
+menuStore.activateSubMenu("patients", routeName);
+</script>
 
 <style scoped></style>

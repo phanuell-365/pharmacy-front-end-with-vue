@@ -19,22 +19,23 @@
     </div>
     <div v-else-if="!error.errorState">
       <div v-if="clickable">
-        <ClickableTable :attributes="usersAttributes" :records="users" />
+        <ClickableTable :attributes="patientsAttributes" :records="patients" />
       </div>
       <div v-else>
-        <TheTable :attributes="usersAttributes" :records="users" />
+        <TheTable :attributes="patientsAttributes" :records="patients" />
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { useUsersStore } from "@/stores/app/users";
-import { useMenuStore } from "@/stores/menu";
-import { defineAsyncComponent, onMounted, provide, reactive, ref } from "vue";
 import TheTable from "@/components/table/TheTable.vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
 import ModalButton from "@/components/modal/ModalButton.vue";
+import { useMenuStore } from "@/stores/menu";
+import { useRouter } from "vue-router";
+import { defineAsyncComponent, onMounted, provide, reactive, ref } from "vue";
+import { EDIT_ICON, PATIENTS_ICON } from "@/constants/icons";
 import {
   buttonEditIconKey,
   buttonNameKey,
@@ -42,8 +43,7 @@ import {
   clickableKey,
   routeEndPointKey,
 } from "@/keys";
-import { EDIT_ICON, USERS_ICON } from "@/constants/icons";
-import { useRouter } from "vue-router";
+import { usePatientsStore } from "@/stores/app/patients";
 
 const TablePlaceholders = defineAsyncComponent(
   () => import("@/components/table/TablePlaceholders.vue")
@@ -56,7 +56,7 @@ const ClickableTable = defineAsyncComponent(
 const router = useRouter();
 
 const menuStore = useMenuStore();
-const usersStore = useUsersStore();
+const patientsStore = usePatientsStore();
 
 const activeMenu = menuStore.getActiveMenuName;
 
@@ -64,14 +64,15 @@ const activeMenu = menuStore.getActiveMenuName;
 // they're injected in the clickable table
 provide(buttonNameKey, activeMenu);
 provide(buttonEditIconKey, EDIT_ICON);
-provide(buttonViewIconKey, USERS_ICON);
+provide(buttonViewIconKey, PATIENTS_ICON);
 
-interface ViewUsersProps {
+interface ViewPatientsProps {
   clickable?: boolean;
   href?: string;
 }
 
-const props = defineProps<ViewUsersProps>();
+const props = defineProps<ViewPatientsProps>();
+
 if (props.clickable) {
   provide(clickableKey, true);
   provide(routeEndPointKey, props.href);
@@ -79,29 +80,27 @@ if (props.clickable) {
   provide(clickableKey, false);
 }
 
-console.log("The props are -> ", props);
-
 const error = reactive({
   errorState: false,
   message: "",
 });
 
 const isLoading = ref(false);
-const users = ref({});
-const usersAttributes = ref({});
+const patients = ref({});
+const patientsAttributes = ref({});
 
 const modalRef = ref<InstanceType<typeof SimpleModal> | null>(null);
 
 onMounted(async () => {
   try {
     isLoading.value = true;
-    users.value = await usersStore.loadUsers();
-    usersAttributes.value = usersStore.getUsersAttributes;
+    patients.value = await patientsStore.loadPatients();
+    patientsAttributes.value = patientsStore.getPatientsAttributes;
     isLoading.value = false;
   } catch (e: any) {
     error.errorState = true;
-
     error.message = e.message;
+
     console.error(e);
 
     if (error.message.includes("Unauthorized")) {

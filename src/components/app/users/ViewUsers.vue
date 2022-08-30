@@ -89,8 +89,6 @@ if (props.clickable) {
   provide(clickableKey, false);
 }
 
-console.log("The props are -> ", props);
-
 const error = reactive({
   errorState: false,
   message: "",

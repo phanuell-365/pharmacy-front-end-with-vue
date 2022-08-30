@@ -1,19 +1,21 @@
 <template>
-  <div class="col-md-4">
+  <div :class="col">
     <label :for="`validation-${name}`" class="form-label">{{ label }}</label>
     <input
       :id="`validation-${name}`"
       v-model="bufferValue"
+      :name="name"
       :type="type"
-      class="form-control"
+      class="form-control class-input"
       required
-      @blur.once="onInputBlur"
+      @blur="onInputBlur"
     />
     <div class="invalid-feedback">{{ invalidFeedback }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { Ref } from "vue";
 import { ref } from "vue";
 
 interface InputProps {
@@ -21,19 +23,33 @@ interface InputProps {
   name: string;
   type: string;
   invalidFeedback: string;
+  col: string;
+  value?: string | null | number | object;
 }
 
 const props = defineProps<InputProps>();
 
-const bufferValue = ref<null | string | number>();
+const value = ref(props.value);
+
+const bufferValue = ref<null | string | number | object>();
+
+if (props.value) {
+  bufferValue.value = value.value;
+}
 
 const emits = defineEmits(["inputBlur"]);
 
+interface FormInputEmitType {
+  name: string;
+  value: Ref<null | string | number | undefined>;
+}
+
 const onInputBlur = () => {
-  emits("inputBlur", {
+  const emitValue: FormInputEmitType = {
     name: props.name,
     value: bufferValue,
-  });
+  };
+  emits("inputBlur", emitValue);
 };
 </script>
 

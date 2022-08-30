@@ -1,6 +1,5 @@
 import type { Submenu } from "@/stores/menu/interfaces";
 import { EDIT_USER_ICON, NEW_USER_ICON, USERS_ICON } from "@/constants/icons";
-import { UNDEF } from "@/constants/routes";
 
 export const usersSubmenu: Submenu[] = [
   {
@@ -23,8 +22,8 @@ export const usersSubmenu: Submenu[] = [
     desc: "Update a user",
     ico: EDIT_USER_ICON,
     name: "update",
-    href: `/users/${UNDEF}/update`,
-    routeName: "update-user",
+    href: `/users/update`,
+    routeName: "update-users",
     active: false,
   },
 ];

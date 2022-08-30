@@ -36,3 +36,11 @@ export const DELETE_ICON = "fas fa-trash-alt";
 export const SEARCH_ICON = "fas fa-search";
 export const NEW_USER_ICON = "fas fa-user-plus";
 export const EDIT_USER_ICON = "fa-solid fa-user-pen";
+
+export const BELL_ICON = "fa-solid fa-bell";
+export const BAN_ICON = "fa-solid fa-ban";
+export const OK_ICON = "fa-solid fa-check";
+export const INFO_ICON = "fa-solid fa-info-circle";
+export const CONFIRM_ICON = "fa-solid fa-question-circle";
+export const WARNING_ICON = "fa-solid fa-exclamation-circle";
+export const DANGER_ICON = "fa-solid fa-exclamation-triangle";

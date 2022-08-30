@@ -25,7 +25,13 @@ export const useMenuStore = defineStore({
     ],
   }),
   getters: {
-    getActiveMenu: (state) => state.menu,
+    getActiveMenu: (state) => state.menu.find((aMenu) => aMenu.active),
+    getActiveMenuName: (state) => {
+      const activeMenu = state.menu.find((aMenu) => aMenu.active);
+      if (activeMenu) {
+        return activeMenu.name;
+      }
+    },
   },
   actions: {
     /**

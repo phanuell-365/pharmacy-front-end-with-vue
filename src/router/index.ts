@@ -4,6 +4,11 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: "/login",
+      name: "login",
+      component: () => import("../views/LoginView.vue"),
+    },
+    {
       path: "/users",
       name: "view-users",
       component: () => import("../views/users/UsersView.vue"),
@@ -12,6 +17,17 @@ const router = createRouter({
       path: "/users/create",
       name: "create-user",
       component: () => import("../views/users/CreateView.vue"),
+    },
+    {
+      path: "/users/update",
+      name: "update-users",
+      component: () => import("../views/users/UpdateView.vue"),
+    },
+    {
+      path: "/users/:id",
+      name: "view-user",
+      component: () => import("../views/users/id/UserView.vue"),
+      props: true,
     },
     {
       path: "/users/:id/update",
@@ -42,12 +58,12 @@ const router = createRouter({
     },
     {
       path: "/patients/create",
-      name: "create-drug",
+      name: "create-patient",
       component: () => import("../views/patients/CreateView.vue"),
     },
     {
       path: "/patients/:id/update",
-      name: "update-drug",
+      name: "update-patient",
       component: () => import("../views/patients/id/UpdatePatientView.vue"),
       props: true,
     },
@@ -106,12 +122,12 @@ const router = createRouter({
     },
     {
       path: "/supplies/create",
-      name: "create-order",
+      name: "create-supply",
       component: () => import("../views/supplies/CreateView.vue"),
     },
     {
       path: "/supplies/:id/update",
-      name: "update-order",
+      name: "update-supply",
       component: () => import("../views/supplies/id/UpdateSupplyView.vue"),
       props: true,
     },

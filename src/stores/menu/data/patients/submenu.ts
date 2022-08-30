@@ -4,7 +4,6 @@ import {
   NEW_USER_ICON,
   PATIENTS_ICON,
 } from "@/constants/icons";
-import { UNDEF } from "@/constants/routes";
 
 export const patientsSubmenu: Submenu[] = [
   {
@@ -26,8 +25,8 @@ export const patientsSubmenu: Submenu[] = [
   {
     desc: "Update a patient",
     name: "update",
-    href: `/patients/${UNDEF}/update`,
-    routeName: "update-patient",
+    href: `/patients/update`,
+    routeName: "update-patients",
     ico: EDIT_USER_ICON,
     active: false,
   },

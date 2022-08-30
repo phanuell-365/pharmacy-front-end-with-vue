@@ -48,7 +48,7 @@ const menuStore = useMenuStore();
 
 const route = useRoute();
 
-const routeName = String(route.name);
+const routeName = String(route.name) + "s";
 
 menuStore.activateSubMenu("patients", routeName);
 

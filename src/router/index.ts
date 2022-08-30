@@ -62,6 +62,17 @@ const router = createRouter({
       component: () => import("../views/patients/CreateView.vue"),
     },
     {
+      path: "/patients/update",
+      name: "update-patients",
+      component: () => import("../views/patients/UpdateView.vue"),
+    },
+    {
+      path: "/patients/:id",
+      name: "view-patient",
+      component: () => import("../views/patients/id/PatientView.vue"),
+      props: true,
+    },
+    {
       path: "/patients/:id/update",
       name: "update-patient",
       component: () => import("../views/patients/id/UpdatePatientView.vue"),

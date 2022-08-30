@@ -50,7 +50,7 @@
           <div class="invalid-feedback">Please enter a phone</div>
         </div>
 
-        <FormButton name="Create" type="submit" />
+        <FormButton name="Update" type="submit" />
       </form>
     </div>
     <!--    <Teleport to="body">-->

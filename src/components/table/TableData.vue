@@ -2,7 +2,7 @@
   <td v-for="fieldName in fieldNames" :key="fieldName">
     {{ record[fieldName] }}
   </td>
-  <td>
+  <td class="text-center">
     <div v-if="!clickable" class="btn-group">
       <ButtonIcon
         :icon="editIcon"

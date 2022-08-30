@@ -49,6 +49,7 @@ import {
   buttonViewIconKey,
   clickableKey,
   routeEndPointKey,
+  routeStartPointKey,
 } from "@/keys";
 import { EDIT_ICON, USERS_ICON } from "@/constants/icons";
 import { useRouter } from "vue-router";
@@ -82,6 +83,7 @@ interface ViewUsersProps {
 const props = defineProps<ViewUsersProps>();
 if (props.clickable) {
   provide(clickableKey, true);
+  provide(routeStartPointKey, "users");
   provide(routeEndPointKey, props.href);
 } else {
   provide(clickableKey, false);

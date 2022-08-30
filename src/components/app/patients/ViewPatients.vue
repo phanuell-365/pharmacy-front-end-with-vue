@@ -38,6 +38,7 @@ import {
   buttonViewIconKey,
   clickableKey,
   routeEndPointKey,
+  routeStartPointKey,
 } from "@/keys";
 import { usePatientsStore } from "@/stores/app/patients";
 
@@ -71,6 +72,7 @@ const props = defineProps<ViewPatientsProps>();
 
 if (props.clickable) {
   provide(clickableKey, true);
+  provide(routeStartPointKey, "patients");
   provide(routeEndPointKey, props.href);
 } else {
   provide(clickableKey, false);

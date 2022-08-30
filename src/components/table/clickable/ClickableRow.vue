@@ -12,17 +12,23 @@
 <script lang="ts" setup>
 import TableData from "../TableData.vue";
 import { inject } from "vue";
-import { attributesKey, recordsKey, routeEndPointKey } from "@/keys";
+import {
+  attributesKey,
+  recordsKey,
+  routeEndPointKey,
+  routeStartPointKey,
+} from "@/keys";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
 const records = inject(recordsKey);
 const attributes = inject(attributesKey);
+const routeStartPoint = inject(routeStartPointKey);
 const routeEndPoint = inject(routeEndPointKey);
 
 const onClickHandler = (recordId: string) => {
-  router.push(`/users/${recordId}/${routeEndPoint}`);
+  router.push(`/${routeStartPoint}/${recordId}/${routeEndPoint}`);
 };
 </script>
 <style scoped></style>

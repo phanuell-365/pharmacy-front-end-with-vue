@@ -1,33 +1,31 @@
 <template>
-  <section class="update-user-view">
+  <section class="user-view">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />
       </template>
-      <template #heading>
-        <span>Update User</span>
-      </template>
+      <template #heading>Patient</template>
       <template #body>
-        <UpdateUser :user-id="props.id" />
+        <ViewPatient :patient-id="props.id" />
       </template>
       <template #footer>
         <div class="btn-group">
           <ButtonIcon
             :icon="NEW_USER_ICON"
             color="primary"
-            name="users"
+            name="patients"
             outline
             role="button"
-            text="Create User"
-            to="/users/create"
+            text="Create Patient"
+            to="/patients/create"
           />
           <ButtonIcon
-            :icon="USERS_ICON"
-            :to="`/users/`"
-            color="info"
-            name="users"
+            :icon="EDIT_USER_ICON"
+            :to="`/patients/${props.id}/update`"
+            color="secondary"
+            name="patients"
             role="button"
-            text="View users"
+            text="Update Patient"
           />
         </div>
       </template>
@@ -39,24 +37,24 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
-import UpdateUser from "@/components/app/users/UpdateUser.vue";
+import ViewPatient from "@/components/app/patients/ViewPatient.vue";
 import { useMenuStore } from "@/stores/menu";
 import { onBeforeRouteLeave, useRoute } from "vue-router";
-import { NEW_USER_ICON, USERS_ICON } from "@/constants/icons";
+import { EDIT_USER_ICON, NEW_USER_ICON } from "@/constants/icons";
 
 const menuStore = useMenuStore();
 
 const route = useRoute();
 
-const routeName = String(route.name) + "s";
+const routeName = String(route.name);
 
-menuStore.activateSubMenu("users", routeName);
+menuStore.activateSubMenu("patients", routeName);
 
-interface UserViewProps {
+interface PatientViewProps {
   id: string;
 }
 
-const props = defineProps<UserViewProps>();
+const props = defineProps<PatientViewProps>();
 
 onBeforeRouteLeave((to, from) => {
   const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");

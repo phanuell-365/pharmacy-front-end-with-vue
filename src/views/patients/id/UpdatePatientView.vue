@@ -18,7 +18,7 @@
             name="patients"
             outline
             role="button"
-            text="Create User"
+            text="Create Patient"
             to="/patients/create"
           />
           <ButtonIcon

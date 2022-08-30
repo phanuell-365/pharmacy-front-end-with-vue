@@ -89,6 +89,11 @@ const router = createRouter({
       component: () => import("../views/suppliers/CreateView.vue"),
     },
     {
+      path: "/suppliers/update",
+      name: "update-suppliers",
+      component: () => import("../views/suppliers/UpdateView.vue"),
+    },
+    {
       path: "/suppliers/:id/update",
       name: "update-supplier",
       component: () => import("../views/suppliers/id/UpdateSupplierView.vue"),

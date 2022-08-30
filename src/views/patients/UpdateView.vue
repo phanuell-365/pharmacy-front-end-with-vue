@@ -1,5 +1,5 @@
 <template>
-  <section class="update-users">
+  <section class="update-patients">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />

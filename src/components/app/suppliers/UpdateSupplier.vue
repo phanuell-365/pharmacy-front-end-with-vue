@@ -81,14 +81,14 @@ import ModalButton from "@/components/modal/ModalButton.vue";
 import { useRouter } from "vue-router";
 import type { Ref } from "vue";
 import { defineAsyncComponent, onMounted, reactive, ref } from "vue";
-import type { UpdatePatientDto } from "@/interfaces/patients";
-import { usePatientsStore } from "@/stores/app/patients";
+import { useSuppliersStore } from "@/stores/app/suppliers";
+import type { UpdateSupplierDto } from "@/interfaces/suppliers";
 
 const FormPlaceholder = defineAsyncComponent(
   () => import("@/components/form/placeholder/FormPlaceholder.vue")
 );
 
-const patientsStore = usePatientsStore();
+const suppliersStore = useSuppliersStore();
 
 const errorLoadingUserRef = ref<InstanceType<typeof SimpleModal> | null>(null);
 
@@ -96,13 +96,13 @@ const router = useRouter();
 
 const modalRef = ref<InstanceType<typeof SimpleModal> | null>(null);
 
-interface UpdatePatientProps {
-  patientId: string;
+interface UpdateSupplierProps {
+  supplierId: string;
 }
 
-const props = defineProps<UpdatePatientProps>();
+const props = defineProps<UpdateSupplierProps>();
 
-const patient: Ref<UpdatePatientDto> = ref({});
+const supplier: Ref<UpdateSupplierDto> = ref({});
 const isLoading = ref(false);
 
 const error = reactive({
@@ -110,19 +110,19 @@ const error = reactive({
   message: "",
 });
 
-const name: Ref<UpdatePatientDto["name"]> = ref();
-const email: Ref<UpdatePatientDto["email"]> = ref();
-const phone: Ref<UpdatePatientDto["phone"]> = ref();
+const name: Ref<UpdateSupplierDto["name"]> = ref();
+const email: Ref<UpdateSupplierDto["email"]> = ref();
+const phone: Ref<UpdateSupplierDto["phone"]> = ref();
 
 onMounted(async () => {
   try {
     isLoading.value = true;
 
-    patient.value = await patientsStore.loadPatientById(props.patientId);
+    supplier.value = await suppliersStore.loadSupplierById(props.supplierId);
 
-    name.value = patient.value.name;
-    email.value = patient.value.email;
-    phone.value = patient.value.phone;
+    name.value = supplier.value.name;
+    email.value = supplier.value.email;
+    phone.value = supplier.value.phone;
 
     isLoading.value = false;
   } catch (e: any) {
@@ -162,7 +162,7 @@ const toastRefDanger = ref<InstanceType<typeof LiveToast> | null>(null);
 const toastRefSuccess = ref<InstanceType<typeof LiveToast> | null>(null);
 
 const onFormSubmit = async () => {
-  const payload: UpdatePatientDto = {};
+  const payload: UpdateSupplierDto = {};
 
   if (name.value) {
     payload.name = name.value;
@@ -177,25 +177,30 @@ const onFormSubmit = async () => {
   }
 
   try {
-    const success = await patientsStore.updatePatient(props.patientId, payload);
+    const success = await suppliersStore.updateSupplier(
+      props.supplierId,
+      payload
+    );
     if (success) {
-      toastRefSuccess.value?.toastText("The patient was updated successfully!");
+      toastRefSuccess.value?.toastText(
+        "The supplier was updated successfully!"
+      );
       toastRefSuccess.value?.toastElapsedDuration("Just now");
-      toastRefSuccess.value?.toastHeading("Patient update");
-      toastRefSuccess.value?.toastName("patient-update");
+      toastRefSuccess.value?.toastHeading("Supplier update");
+      toastRefSuccess.value?.toastName("supplier-update");
       toastRefSuccess.value?.show();
     }
   } catch (error: any) {
     toastRefDanger.value?.toastText(`An error occurred! ${error.message}`);
     toastRefDanger.value?.toastElapsedDuration("Just now");
     toastRefDanger.value?.toastHeading("Error");
-    toastRefDanger.value?.toastName("patient-update-error");
+    toastRefDanger.value?.toastName("supplier-update-error");
     toastRefDanger.value?.show();
   }
 };
 
 const onHiddenBsToastHandlerSuccess = async () => {
-  await router.push({ name: "view-patients" });
+  await router.push({ name: "view-suppliers" });
 };
 </script>
 

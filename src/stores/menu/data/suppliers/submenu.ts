@@ -4,7 +4,6 @@ import {
   SUPPLIERS_ICON,
 } from "@/constants/icons";
 import type { Submenu } from "@/stores/menu/interfaces";
-import { UNDEF } from "@/constants/routes";
 
 export const suppliersSubmenu: Submenu[] = [
   {
@@ -26,8 +25,8 @@ export const suppliersSubmenu: Submenu[] = [
   {
     desc: "Update a supplier",
     name: "supplier",
-    href: `/suppliers/${UNDEF}/update`,
-    routeName: "update-supplier",
+    href: `/suppliers/update`,
+    routeName: "update-suppliers",
     ico: EDIT_SUPPLIERS_ICON,
     active: false,
   },

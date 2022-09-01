@@ -1,15 +1,28 @@
 <template>
-  <div aria-atomic="true" aria-live="polite" class="position-relative">
-    <!-- Position it: -->
-    <!-- - `.toast-container` for spacing between toasts -->
-    <!-- - `.position-absolute`, `top-0` & `end-0` to position the toasts in the upper right corner -->
-    <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
-    <div class="toast-container position-absolute top-0 end-0 p-3">
+  <div aria-atomic="true" aria-live="polite">
+    <div :class="toastPlacement" class="toast-container position-absolute p-3">
       <slot />
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { computed } from "vue";
+import { TOP_RIGHT } from "@/constants/toasts";
 
-<style scoped></style>
+interface ToastContainerProps {
+  placement?: string;
+}
+
+const props = defineProps<ToastContainerProps>();
+
+const toastPlacement = computed(() =>
+  props.placement ? props.placement : TOP_RIGHT
+);
+</script>
+
+<style scoped>
+.toast-container {
+  z-index: 11;
+}
+</style>

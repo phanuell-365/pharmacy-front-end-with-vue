@@ -1,29 +1,29 @@
 <template>
-  <div :class="placement" class="position-fixed p-3">
-    <div
-      :id="`liveToast-${exposedProps.name}`"
-      ref="toastRef"
-      :aria-live="ariaLive"
-      :class="skinColorClasses"
-      :data-bs-delay="delayToast"
-      :role="role"
-      aria-atomic="true"
-      class="toast border-0"
-    >
-      <div class="toast-header">
-        <FontAwesome :icon-name="iconName" class="mx-2" />
-        <strong class="me-auto">{{ exposedProps.heading }}</strong>
-        <small>{{ exposedProps.elapsedDuration }}</small>
-        <button
-          aria-label="Close"
-          class="btn-close"
-          data-bs-dismiss="toast"
-          type="button"
-        ></button>
-      </div>
-      <div class="toast-body">{{ exposedProps.text }}</div>
+  <!--  <div :class="placement" class="position-fixed p-3">-->
+  <div
+    :id="`liveToast-${exposedProps.name}`"
+    ref="toastRef"
+    :aria-live="ariaLive"
+    :class="skinColorClasses"
+    :data-bs-delay="delayToast"
+    :role="role"
+    aria-atomic="true"
+    class="toast border-0"
+  >
+    <div class="toast-header">
+      <FontAwesome :icon-name="iconName" class="mx-2" />
+      <strong class="me-auto">{{ exposedProps.heading }}</strong>
+      <small>{{ exposedProps.elapsedDuration }}</small>
+      <button
+        aria-label="Close"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        type="button"
+      ></button>
     </div>
+    <div class="toast-body">{{ exposedProps.text }}</div>
   </div>
+  <!--  </div>-->
 </template>
 
 <script lang="ts" setup>
@@ -104,6 +104,8 @@ const delayToast = computed(() =>
   exposedProps.delay ? exposedProps.delay : 5000
 );
 
+console.log("toast delay", delayToast.value);
+
 const skinColorClasses: Ref<string | null> = ref(null);
 const iconName: Ref<string | null> = ref(null);
 const placement: Ref<string | null> = ref(null);
@@ -163,8 +165,4 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
-.toast-container {
-  z-index: 11;
-}
-</style>
+<style scoped></style>

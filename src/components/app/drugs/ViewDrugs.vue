@@ -19,18 +19,19 @@
     </div>
     <div v-else-if="!error.errorState">
       <div v-if="clickable">
-        <ClickableTable :attributes="usersAttributes" :records="users" />
+        <ClickableTable :attributes="drugsAttributes" :records="drugs" />
       </div>
       <div v-else>
-        <TheTable :attributes="usersAttributes" :records="users" />
+        <TheTable :attributes="drugsAttributes" :records="drugs" />
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { useUsersStore } from "@/stores/app/users";
+import { useDrugsStore } from "@/stores/app/drugs";
 import { useMenuStore } from "@/stores/menu";
+import type { Ref } from "vue";
 import { defineAsyncComponent, onMounted, provide, reactive, ref } from "vue";
 import TheTable from "@/components/table/TheTable.vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
@@ -43,8 +44,9 @@ import {
   routeEndPointKey,
   routeStartPointKey,
 } from "@/keys";
-import { EDIT_ICON, USERS_ICON } from "@/constants/icons";
 import { useRouter } from "vue-router";
+import { DRUGS_ICON, EDIT_DRUG_ICON } from "@/constants/icons";
+import type { DrugDto } from "@/interfaces/drugs";
 
 const TablePlaceholders = defineAsyncComponent(
   () => import("@/components/table/TablePlaceholders.vue")
@@ -57,25 +59,25 @@ const ClickableTable = defineAsyncComponent(
 const router = useRouter();
 
 const menuStore = useMenuStore();
-const usersStore = useUsersStore();
+const drugsStore = useDrugsStore();
 
 const activeMenu = menuStore.getActiveMenuName;
 
 // provide icons and button name for the clickable table
 // they're injected in the clickable table
 provide(buttonNameKey, activeMenu);
-provide(buttonEditIconKey, EDIT_ICON);
-provide(buttonViewIconKey, USERS_ICON);
+provide(buttonEditIconKey, EDIT_DRUG_ICON);
+provide(buttonViewIconKey, DRUGS_ICON);
 
-interface ViewUsersProps {
+interface ViewDrugProps {
   clickable?: boolean;
   href?: string;
 }
 
-const props = defineProps<ViewUsersProps>();
+const props = defineProps<ViewDrugProps>();
 if (props.clickable) {
   provide(clickableKey, true);
-  provide(routeStartPointKey, "users");
+  provide(routeStartPointKey, "drugs");
   provide(routeEndPointKey, props.href);
 } else {
   provide(clickableKey, false);
@@ -87,16 +89,16 @@ const error = reactive({
 });
 
 const isLoading = ref(false);
-const users = ref({});
-const usersAttributes = ref({});
+const drugs: Ref<DrugDto[]> = ref([]);
+const drugsAttributes: Ref<string[]> = ref([]);
 
 const modalRef = ref<InstanceType<typeof SimpleModal> | null>(null);
 
 onMounted(async () => {
   try {
     isLoading.value = true;
-    users.value = await usersStore.loadUsers();
-    usersAttributes.value = usersStore.getUsersAttributes;
+    drugs.value = await drugsStore.loadDrugs();
+    drugsAttributes.value = drugsStore.getDrugsAttributes;
     isLoading.value = false;
   } catch (e: any) {
     error.errorState = true;

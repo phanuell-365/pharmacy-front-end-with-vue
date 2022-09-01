@@ -35,8 +35,8 @@ export const useLoginStore = defineStore({
 
       const date = Date.now();
 
-      const newDate = new Date(date).setHours(
-        new Date(date).getHours() + Number.parseInt(data.expires_in)
+      const newDate = new Date(date).setMinutes(
+        new Date(date).getMinutes() + Number.parseInt(data.expires_in)
       );
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

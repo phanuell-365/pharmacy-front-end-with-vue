@@ -50,8 +50,13 @@
           name="role"
           required
         >
-          <option disabled selected value="">Please select a role</option>
-          <option v-for="_role in usersRoles" :key="_role" :value="_role">
+          <option :value="role" disabled>Please select a role</option>
+          <option
+            v-for="_role in usersRoles"
+            :key="_role"
+            :selected="role"
+            :value="_role"
+          >
             {{ _.startCase(_role) }}
           </option>
         </select>
@@ -107,7 +112,7 @@ const router = useRouter();
 
 const usersStore = useUsersStore();
 
-const usersRoles = ref({});
+const usersRoles: Ref<string[]> = ref([]);
 
 const error = reactive({
   errorState: false,
@@ -132,7 +137,7 @@ const username: Ref<NewUserDto["username"] | undefined> = ref();
 const password: Ref<NewUserDto["password"] | undefined> = ref();
 const email: Ref<NewUserDto["email"] | undefined> = ref();
 const phone: Ref<NewUserDto["phone"] | undefined> = ref();
-const role: Ref<NewUserDto["role"] | undefined> = ref();
+const role: Ref<NewUserDto["role"] | undefined> = ref(usersRoles.value[0]);
 
 const onFormSubmitHandler = async (event: Event) => {
   const form = event.target as HTMLFormElement;
@@ -236,16 +241,6 @@ const onFormSubmitHandler = async (event: Event) => {
 
 const onHiddenBsToastHandlerInfo = () => {
   router.push("/users");
-};
-
-// do clean up for the modal
-const onHiddenBsModal = () => {
-  const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");
-
-  for (let modal = 0; modal < modalBackDrops.length; modal++) {
-    const modalEl = modalBackDrops[modal];
-    document.body.removeChild(modalEl);
-  }
 };
 </script>
 

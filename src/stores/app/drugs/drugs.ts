@@ -183,7 +183,7 @@ export const useDrugsStore = defineStore({
       if (!response.ok) {
         if (data.message === "Unauthorized") {
           throw new Error(
-            data.message + "! Failed to fetch drug's doseForms !"
+            data.message + "! Failed to fetch drug's dose forms !"
           );
         }
         throw new Error(data.message);

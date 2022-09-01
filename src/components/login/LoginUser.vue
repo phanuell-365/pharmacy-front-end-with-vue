@@ -175,7 +175,7 @@ const onHiddenBsToastHandlerDanger = () => {
 };
 
 const onHiddenBsToastHandlerWarning = async () => {
-  await router.push({ name: "view-users" });
+  await router.back();
 };
 </script>
 

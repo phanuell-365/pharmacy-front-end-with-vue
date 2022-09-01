@@ -1,6 +1,5 @@
 import type { Submenu } from "@/stores/menu/interfaces";
 import { DRUGS_ICON, EDIT_DRUG_ICON, NEW_DRUGS_ICON } from "@/constants/icons";
-import { UNDEF } from "@/constants/routes";
 
 export const drugsSubmenu: Submenu[] = [
   {
@@ -22,8 +21,8 @@ export const drugsSubmenu: Submenu[] = [
   {
     desc: "Update a drug",
     name: "update",
-    href: `/drugs/${UNDEF}/update`,
-    routeName: "update-drug",
+    href: `/drugs/update`,
+    routeName: "update-drugs",
     ico: EDIT_DRUG_ICON,
     active: false,
   },

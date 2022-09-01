@@ -8,7 +8,7 @@
         <span>Update Drug</span>
       </template>
       <template #body>
-        <UpdateUser :user-id="props.id" />
+        <UpdateDrug :drug-id="props.id" />
       </template>
       <template #footer>
         <div class="btn-group">
@@ -39,6 +39,7 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
+import UpdateDrug from "@/components/app/drugs/UpdateDrug.vue";
 import { useMenuStore } from "@/stores/menu";
 import { onBeforeRouteLeave, useRoute } from "vue-router";
 import { DRUGS_ICON, NEW_DRUGS_ICON } from "@/constants/icons";

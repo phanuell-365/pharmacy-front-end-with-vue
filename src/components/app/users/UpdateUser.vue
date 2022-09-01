@@ -80,12 +80,7 @@
       </form>
     </div>
     <Teleport to="body">
-      <SimpleModal
-        ref="modalRef"
-        danger
-        static-backdrop
-        @on-hidden-bs-modal="onHiddenBsModal"
-      >
+      <SimpleModal ref="modalRef" danger static-backdrop>
         <template #buttons>
           <ModalButton color="info" text="login" @click="onLoginClick" />
           <ModalButton color="danger" text="cancel" @click="onCloseClick" />

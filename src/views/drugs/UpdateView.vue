@@ -20,7 +20,7 @@
             name="drugs"
             outline
             role="button"
-            text="Create User"
+            text="Create Drug"
             to="/drugs/create"
           />
         </div>

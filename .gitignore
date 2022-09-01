@@ -35,3 +35,6 @@ coverage
 !/src/assets/css/bootstrap.min.css
 !/src/assets/js/bootstrap.js
 !/src/assets/webfonts/
+!/src/assets/css/bootstrap.min.css.map
+!/src/assets/js/bootstrap.bundle.min.js.map
+!/src/assets/js/bootstrap.bundle.min.js

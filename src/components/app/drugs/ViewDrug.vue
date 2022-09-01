@@ -7,7 +7,7 @@
       <FormPlaceholder />
     </div>
     <div v-else-if="!error.errorState">
-      <DisabledForm :record="user" />
+      <DisabledForm :record="drug" />
     </div>
     <Teleport to="body">
       <SimpleModal ref="modalRef" danger static-backdrop>
@@ -20,11 +20,13 @@
 </template>
 
 <script lang="ts" setup>
-import { useUsersStore } from "@/stores/app/users";
+import type { Ref } from "vue";
 import { defineAsyncComponent, onMounted, reactive, ref } from "vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
 import ModalButton from "@/components/modal/CloseButton.vue";
 import { onBeforeRouteLeave, useRouter } from "vue-router";
+import { useDrugsStore } from "@/stores/app/drugs";
+import type { DrugDto } from "@/interfaces/drugs";
 
 const FormPlaceholder = defineAsyncComponent(
   () => import("@/components/form/placeholder/FormPlaceholder.vue")
@@ -38,15 +40,16 @@ const router = useRouter();
 
 const modalRef = ref<InstanceType<typeof SimpleModal> | null>(null);
 
-const usersStore = useUsersStore();
+const drugsStore = useDrugsStore();
 
-interface ViewUserProps {
-  userId: string;
+interface ViewDrugProps {
+  drugId: string;
 }
 
-const props = defineProps<ViewUserProps>();
+const props = defineProps<ViewDrugProps>();
 
-const user = ref({});
+const drug: Ref<DrugDto | undefined> = ref(undefined);
+
 const isLoading = ref(false);
 
 const error = reactive({
@@ -57,7 +60,7 @@ const error = reactive({
 onMounted(async () => {
   try {
     isLoading.value = true;
-    user.value = await usersStore.loadUserById(props.userId);
+    drug.value = await drugsStore.loadDrugById(props.drugId);
     isLoading.value = false;
   } catch (e: any) {
     error.errorState = true;
@@ -70,8 +73,8 @@ onMounted(async () => {
 });
 
 onBeforeRouteLeave((to, from, next) => {
-  if (props.userId === "update") {
-    return "/users/update";
+  if (props.drugId === "update") {
+    return "/drugs/update";
   }
   next();
 });

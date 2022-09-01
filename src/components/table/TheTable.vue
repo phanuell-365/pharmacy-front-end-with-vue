@@ -1,8 +1,10 @@
 <template>
-  <table class="table table-sm table-hover table-bordered border-light">
-    <TableHead />
-    <TableBody />
-  </table>
+  <div class="scroll-table">
+    <table class="table table-hover table-bordered border-light">
+      <TableHead class="sticky-top" />
+      <TableBody />
+    </table>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -22,4 +24,11 @@ provide(recordsKey, props.records);
 provide(attributesKey, props.attributes);
 </script>
 
-<style scoped></style>
+<style scoped>
+.scroll-table {
+  position: relative;
+  height: 350px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+</style>

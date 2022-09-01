@@ -4,6 +4,7 @@ import { DRUG_ATTRIBUTES } from "@/constants/drugs";
 import { useTokenStore } from "@/stores/utils";
 import { SUCCESS } from "@/constants/response";
 import _ from "lodash";
+import { BASE_URL } from "@/constants/url";
 
 const DRUGS: DrugDto[] = [];
 const DOSE_FORMS: string[] = [];
@@ -56,7 +57,7 @@ export const useDrugsStore = defineStore({
       return tokenStore.getStoredToken();
     },
     createDrug: async function (payload: NewDrugDto) {
-      const response = await fetch("http://localhost:6900/v1/api/drugs", {
+      const response = await fetch(`${BASE_URL}/drugs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +78,7 @@ export const useDrugsStore = defineStore({
       return SUCCESS;
     },
     loadDrugs: async function () {
-      const response = await fetch("http://localhost:6900/v1/api/drugs", {
+      const response = await fetch(`${BASE_URL}/drugs`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -102,16 +103,13 @@ export const useDrugsStore = defineStore({
       return drugs;
     },
     loadDrugById: async function (drugId: string) {
-      const response = await fetch(
-        `http://localhost:6900/v1/api/drugs/${drugId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.getToken(),
-          },
-        }
-      );
+      const response = await fetch(`${BASE_URL}/drugs/${drugId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+      });
 
       const data = await response.json();
 
@@ -140,16 +138,13 @@ export const useDrugsStore = defineStore({
       this.drugs.push(drug);
     },
     loadDrugStrengths: async function () {
-      const response = await fetch(
-        `http://localhost:6900/v1/api/drugs?resource=strengths`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.getToken(),
-          },
-        }
-      );
+      const response = await fetch(`${BASE_URL}/drugs?resource=strengths`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+      });
 
       const data = await response.json();
 
@@ -167,16 +162,13 @@ export const useDrugsStore = defineStore({
       return data;
     },
     loadDrugDoseForms: async function () {
-      const response = await fetch(
-        `http://localhost:6900/v1/api/drugs?resource=doseForms`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.getToken(),
-          },
-        }
-      );
+      const response = await fetch(`${BASE_URL}/drugs?resource=doseForms`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+      });
 
       const data = await response.json();
 
@@ -196,17 +188,14 @@ export const useDrugsStore = defineStore({
       return data;
     },
     updateDrug: async function (drugId: string, payload: UpdateDrugDto) {
-      const response = await fetch(
-        `http://localhost:6900/v1/api/drugs/${drugId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.getToken(),
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const response = await fetch(`${BASE_URL}/drugs/${drugId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+        body: JSON.stringify(payload),
+      });
 
       const data = await response.json();
 

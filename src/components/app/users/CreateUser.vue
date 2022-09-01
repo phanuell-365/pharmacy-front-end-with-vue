@@ -210,13 +210,6 @@ const onFormSubmitHandler = async (event: Event) => {
     const valid = values.every((value: string) => value !== "");
 
     if (valid) {
-      // const success = await usersStore.createUser({
-      //   username: payload.username as string,
-      //   password: payload.password as string,
-      //   email: payload.email as string,
-      //   phone: payload.phone as string,
-      //   role: payload.role as string,
-      // });
       const success = await usersStore.createUser({ ...payload });
 
       if (success) {

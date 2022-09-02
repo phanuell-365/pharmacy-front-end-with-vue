@@ -3,7 +3,7 @@ import { DRUGS_ICON, EDIT_DRUG_ICON, NEW_DRUGS_ICON } from "@/constants/icons";
 
 export const drugsSubmenu: Submenu[] = [
   {
-    desc: "Create a new drugs",
+    desc: "Create a new drug",
     name: "create",
     href: "/drugs/create",
     routeName: "create-drug",

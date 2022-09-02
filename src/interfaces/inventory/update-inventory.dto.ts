@@ -1,5 +1,4 @@
 export interface UpdateInventoryDto {
-  issueUnit?: string;
   issueUnitPrice?: number;
   issueUnitPerPackSize?: number;
   packSize?: string;

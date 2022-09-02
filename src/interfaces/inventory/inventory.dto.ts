@@ -1,6 +1,5 @@
 export interface InventoryDto {
   id: string;
-  issueUnit: string;
   issueUnitPrice: number;
   issueUnitPerPackSize: number;
   packSize: string;

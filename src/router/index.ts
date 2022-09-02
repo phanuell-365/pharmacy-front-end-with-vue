@@ -119,7 +119,7 @@ const router = createRouter({
     {
       path: "/inventory",
       name: "view-inventory",
-      component: () => import("../views/inventory/InventoryView.vue"),
+      component: () => import("../views/inventory/InventoriesView.vue"),
     },
     {
       path: "/inventory/create",

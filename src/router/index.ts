@@ -118,13 +118,24 @@ const router = createRouter({
     },
     {
       path: "/inventory",
-      name: "view-inventory",
+      name: "view-inventories",
       component: () => import("../views/inventory/InventoriesView.vue"),
     },
     {
       path: "/inventory/create",
       name: "create-inventory",
       component: () => import("../views/inventory/CreateView.vue"),
+    },
+    {
+      path: "/inventory/update",
+      name: "update-inventories",
+      component: () => import("../views/inventory/UpdateView.vue"),
+    },
+    {
+      path: "/inventory/:id",
+      name: "view-inventory",
+      component: () => import("../views/inventory/id/InventoryView.vue"),
+      props: true,
     },
     {
       path: "/inventory/:id/update",

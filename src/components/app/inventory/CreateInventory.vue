@@ -288,7 +288,7 @@ const onFormSubmitHandler = async (event: Event) => {
     issueUnitPerPackSize: 0,
     packSize: "",
     packSizePrice: 0,
-    expirationDate: new Date(),
+    expirationDate: "",
     DrugId: "",
   };
 
@@ -311,7 +311,7 @@ const onFormSubmitHandler = async (event: Event) => {
   }
 
   if (validInventoryObj.expirationDate) {
-    payload.expirationDate = expirationDate.value as Date;
+    payload.expirationDate = expirationDate.value as string;
   }
 
   if (validInventoryObj.DrugId) {

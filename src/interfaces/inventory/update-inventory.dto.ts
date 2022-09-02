@@ -3,6 +3,6 @@ export interface UpdateInventoryDto {
   issueUnitPerPackSize?: number;
   packSize?: string;
   packSizePrice?: number;
-  expirationDate?: Date;
+  expirationDate?: string;
   DrugId?: string;
 }

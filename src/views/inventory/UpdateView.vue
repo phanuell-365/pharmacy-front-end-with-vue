@@ -1,23 +1,29 @@
 <template>
-  <section class="inventory-view">
+  <section class="update-users">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />
       </template>
-      <template #heading>Inventories</template>
+      <template #heading>
+        <span>Select an inventory to update</span>
+      </template>
       <template #body>
-        <ViewInventories />
+        <div>
+          <ViewInventory clickable href="update" />
+        </div>
       </template>
       <template #footer>
-        <ButtonIcon
-          :icon="INVENTORY_ICON"
-          color="primary"
-          name="inventory"
-          outline
-          role="button"
-          text="Create Inventory"
-          to="/inventory/create"
-        />
+        <div class="btn-group">
+          <ButtonIcon
+            :icon="INVENTORY_ICON"
+            color="primary"
+            name="inventory"
+            outline
+            role="button"
+            text="Create inventory"
+            to="/inventory/create"
+          />
+        </div>
       </template>
     </SidebarLayout>
   </section>
@@ -27,7 +33,7 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
-import ViewInventories from "@/components/app/inventory/ViewInventories.vue";
+import ViewInventory from "@/components/app/inventory/ViewInventories.vue";
 import { useMenuStore } from "@/stores/menu";
 import { onBeforeRouteLeave, useRoute } from "vue-router";
 import { INVENTORY_ICON } from "@/constants/icons";
@@ -38,7 +44,7 @@ const route = useRoute();
 
 const routeName = String(route.name);
 
-menuStore.activateSubMenu("inventory", "view-inventories");
+menuStore.activateSubMenu("inventory", routeName);
 
 onBeforeRouteLeave((to, from) => {
   const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");

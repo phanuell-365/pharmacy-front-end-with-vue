@@ -21,11 +21,14 @@
       <div v-if="clickable">
         <ClickableTable
           :attributes="inventoryAttributes"
-          :records="inventories"
+          :records="convertedInventories"
         />
       </div>
       <div v-else>
-        <TheTable :attributes="inventoryAttributes" :records="inventories" />
+        <TheTable
+          :attributes="inventoryAttributes"
+          :records="convertedInventories"
+        />
       </div>
     </div>
   </section>
@@ -50,6 +53,7 @@ import { EDIT_ICON, INVENTORY_ICON } from "@/constants/icons";
 import { useRouter } from "vue-router";
 import { useInventoryStore } from "@/stores/app/inventory";
 import type { InventoryDto } from "@/interfaces/inventory";
+import { useConvertExpirationDate } from "@/composables/inventory";
 
 const TablePlaceholders = defineAsyncComponent(
   () => import("@/components/table/TablePlaceholders.vue")
@@ -93,6 +97,7 @@ const error = reactive({
 
 const isLoading = ref(false);
 const inventories: Ref<InventoryDto[]> = ref([]);
+const convertedInventories: Ref<InventoryDto[]> = ref([]);
 const inventoryAttributes: Ref<string[]> = ref([]);
 
 const modalRef = ref<InstanceType<typeof SimpleModal> | null>(null);
@@ -101,6 +106,7 @@ onMounted(async () => {
   try {
     isLoading.value = true;
     inventories.value = await inventoryStore.loadInventories();
+    convertedInventories.value = useConvertExpirationDate(inventories).value;
     inventoryAttributes.value = inventoryStore.getInventoryAttributes;
     isLoading.value = false;
   } catch (e: any) {

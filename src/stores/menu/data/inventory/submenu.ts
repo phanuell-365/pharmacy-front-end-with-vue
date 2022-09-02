@@ -4,7 +4,6 @@ import {
   INVENTORY_ICON,
 } from "@/constants/icons";
 import type { Submenu } from "@/stores/menu/interfaces";
-import { UNDEF } from "@/constants/routes";
 
 export const inventorySubmenu: Submenu[] = [
   {
@@ -19,15 +18,15 @@ export const inventorySubmenu: Submenu[] = [
     desc: "View all inventory",
     name: "inventory",
     href: "/inventory",
-    routeName: "view-inventory",
+    routeName: "view-inventories",
     ico: EDIT_INVENTORY_ICON,
     active: false,
   },
   {
     desc: "Update an inventory",
     name: "update",
-    href: `/inventory/${UNDEF}/update`,
-    routeName: "update-inventory",
+    href: `/inventory/update`,
+    routeName: "update-inventories",
     ico: EDIT_ICON,
     active: false,
   },

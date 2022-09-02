@@ -71,7 +71,7 @@
           class="form-control"
           name="expirationDate"
           required
-          type="date"
+          type="text"
         />
         <div class="invalid-feedback">{{ expirationDateInvalidFeedback }}</div>
       </div>

@@ -169,7 +169,14 @@ export const useInventoryStore = defineStore({
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.getToken(),
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          issueUnitPrice: payload.issueUnitPrice,
+          issueUnitPerPackSize: payload.issueUnitPerPackSize,
+          packSize: payload.packSize,
+          packSizePrice: payload.packSizePrice,
+          expirationDate: new Date(payload.expirationDate as string),
+          DrugId: payload.DrugId,
+        }),
       });
 
       const data = await response.json();

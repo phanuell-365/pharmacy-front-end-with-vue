@@ -1,5 +1,5 @@
 <template>
-  <section class="create-user">
+  <section class="create-inventory">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />

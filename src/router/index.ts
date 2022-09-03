@@ -214,6 +214,11 @@ const router = createRouter({
       component: () => import("../views/sales/CreateView.vue"),
     },
     {
+      path: "/sales/update",
+      name: "update-sales",
+      component: () => import("../views/sales/UpdateView.vue"),
+    },
+    {
       path: "/sales/:id/update",
       name: "update-sale",
       component: () => import("../views/sales/id/UpdateSaleView.vue"),

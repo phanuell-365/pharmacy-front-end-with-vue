@@ -1,6 +1,5 @@
 import { EDIT_SALE_ICON, NEW_SALES_ICON, SALES_ICON } from "@/constants/icons";
 import type { Submenu } from "@/stores/menu/interfaces";
-import { UNDEF } from "@/constants/routes";
 
 export const salesSubmenu: Submenu[] = [
   {
@@ -22,8 +21,8 @@ export const salesSubmenu: Submenu[] = [
   {
     desc: "Update a sale",
     name: "update",
-    href: `/sales/${UNDEF}/update`,
-    routeName: "update-sale",
+    href: `/sales/update`,
+    routeName: "update-sales",
     ico: EDIT_SALE_ICON,
     active: false,
   },

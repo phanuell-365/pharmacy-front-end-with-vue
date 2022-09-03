@@ -102,7 +102,7 @@ export const useSuppliesStore = defineStore({
       return data as SupplyDto;
     },
     updateSupply: async function (supplyId: string, payload: UpdateSupplyDto) {
-      const response = await fetch(`${BASE_URL}/supply/${supplyId}`, {
+      const response = await fetch(`${BASE_URL}/supplies/${supplyId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

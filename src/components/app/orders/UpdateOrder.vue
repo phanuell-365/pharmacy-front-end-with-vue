@@ -145,7 +145,10 @@ const ordersStore = useOrdersStore();
 const drugsStore = useDrugsStore();
 const suppliersStore = useSuppliersStore();
 
-const order: Ref<UpdateOrderDto> = ref({});
+const order: Ref<UpdateOrderDto> = ref({
+  DrugId: "",
+  SupplierId: "",
+});
 const drugs: Ref<DrugDto[]> = ref([]);
 const suppliers: Ref<SupplierDto[]> = ref([]);
 const orderStatuses: Ref<string[]> = ref([]);
@@ -245,7 +248,7 @@ const validateForm = (form: HTMLFormElement) => {
   }
 
   // the status element
-  const statusEl = useGetFormElement(form, "select", "SupplierId")
+  const statusEl = useGetFormElement(form, "select", "status")
     .value as HTMLSelectElement;
 
   if (!status.value) {
@@ -260,7 +263,10 @@ const validateForm = (form: HTMLFormElement) => {
 const onFormSubmitHandler = async (event: Event) => {
   const form = event.target as HTMLFormElement;
 
-  const payload: UpdateOrderDto = {};
+  const payload: UpdateOrderDto = {
+    DrugId: "",
+    SupplierId: "",
+  };
 
   validateForm(form);
 

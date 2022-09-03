@@ -1,25 +1,23 @@
 <template>
-  <section class="create-supply">
+  <section class="supplies-orders-view">
     <SidebarLayout>
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />
       </template>
-      <template #heading>Create Supply</template>
+      <template #heading>Select an order to supply</template>
       <template #body>
-        <CreateSupply :order-id="props.orderId" />
+        <ViewOrders clickable href="create" root-path="supplies" />
       </template>
       <template #footer>
-        <div class="btn-group">
-          <ButtonIcon
-            :icon="ORDERS_ICON"
-            color="primary"
-            name="supply"
-            outline
-            role="button"
-            text="View Supply"
-            to="/supplies"
-          />
-        </div>
+        <ButtonIcon
+          :icon="SUPPLIES_ICON"
+          color="primary"
+          name="supplies"
+          outline
+          role="button"
+          text="View Supplies"
+          to="/supplies"
+        />
       </template>
     </SidebarLayout>
   </section>
@@ -29,20 +27,18 @@
 import SidebarLayout from "@/layouts/SidebarLayout.vue";
 import SidebarNavigation from "@/components/sidebar/SidebarNavigation.vue";
 import ButtonIcon from "@/components/Buttons/ButtonIcon.vue";
-import CreateSupply from "@/components/app/supplies/CreateSupply.vue";
+import ViewOrders from "@/components/app/orders/ViewOrders.vue";
 import { useMenuStore } from "@/stores/menu";
-import { onBeforeRouteLeave } from "vue-router";
-import { ORDERS_ICON } from "@/constants/icons";
+import { onBeforeRouteLeave, useRoute } from "vue-router";
+import { SUPPLIES_ICON } from "@/constants/icons";
 
 const menuStore = useMenuStore();
 
-menuStore.activateSubMenu("supplies", "supplies-orders");
+const route = useRoute();
 
-interface CreateSupplyProps {
-  orderId: string;
-}
+const routeName = String(route.name);
 
-const props = defineProps<CreateSupplyProps>();
+menuStore.activateSubMenu("supplies", routeName);
 
 onBeforeRouteLeave((to, from) => {
   const modalBackDrops = document.body.getElementsByClassName("modal-backdrop");

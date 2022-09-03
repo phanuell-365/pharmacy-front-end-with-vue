@@ -104,8 +104,6 @@ const delayToast = computed(() =>
   exposedProps.delay ? exposedProps.delay : 5000
 );
 
-console.log("toast delay", delayToast.value);
-
 const skinColorClasses: Ref<string | null> = ref(null);
 const iconName: Ref<string | null> = ref(null);
 const placement: Ref<string | null> = ref(null);

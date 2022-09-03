@@ -143,6 +143,7 @@ const validateForm = (form: HTMLFormElement) => {
     orderQuantityEl.classList.add("is-invalid");
     validOrderObj.orderQuantity = false;
   } else if (orderQuantity.value && orderQuantity.value <= 1) {
+    orderQuantityEl.classList.add("is-invalid");
     orderQuantityInvalidFeedback.value =
       "The order quantity may not be less than or equal to one";
     validOrderObj.orderQuantity = false;

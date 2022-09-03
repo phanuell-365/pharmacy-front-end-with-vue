@@ -31,7 +31,14 @@
 <script lang="ts" setup>
 import { useMenuStore } from "@/stores/menu";
 import type { Ref } from "vue";
-import { defineAsyncComponent, onMounted, provide, reactive, ref } from "vue";
+import {
+  computed,
+  defineAsyncComponent,
+  onMounted,
+  provide,
+  reactive,
+  ref,
+} from "vue";
 import TheTable from "@/components/table/TheTable.vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
 import ModalButton from "@/components/modal/ModalButton.vue";
@@ -72,14 +79,19 @@ provide(buttonViewIconKey, ORDERS_ICON);
 interface ViewOrdersProps {
   clickable?: boolean;
   href?: string;
+  rootPath?: string;
 }
 
 const props = defineProps<ViewOrdersProps>();
 
+const startPoint = computed(() => (props.rootPath ? props.rootPath : "orders"));
+
+const endPoint = computed(() => (props.href ? props.href : ""));
+
 if (props.clickable) {
   provide(clickableKey, true);
-  provide(routeStartPointKey, "orders");
-  provide(routeEndPointKey, props.href);
+  provide(routeStartPointKey, startPoint.value);
+  provide(routeEndPointKey, endPoint.value);
 } else {
   provide(clickableKey, false);
 }

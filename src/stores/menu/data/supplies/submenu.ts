@@ -11,8 +11,8 @@ export const suppliesSubmenu: Submenu[] = [
     desc: "Create a new supply",
     ico: NEW_SUPPLY_ICON,
     name: "create",
-    href: "/supplies/create",
-    routeName: "create-supply",
+    href: "/supplies/orders",
+    routeName: "supplies-orders",
     active: false,
   },
   {

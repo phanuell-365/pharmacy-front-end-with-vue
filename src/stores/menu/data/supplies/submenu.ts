@@ -4,7 +4,6 @@ import {
   SUPPLIES_ICON,
 } from "@/constants/icons";
 import type { Submenu } from "@/stores/menu/interfaces";
-import { UNDEF } from "@/constants/routes";
 
 export const suppliesSubmenu: Submenu[] = [
   {
@@ -26,8 +25,8 @@ export const suppliesSubmenu: Submenu[] = [
   {
     desc: "Update a supply",
     name: "update",
-    href: `/supplies/${UNDEF}/update`,
-    routeName: "update-supply",
+    href: `/supplies/update`,
+    routeName: "update-supplies",
     ico: EDIT_SUPPLY_ICON,
     active: false,
   },

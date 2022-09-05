@@ -5,7 +5,7 @@
         <SidebarNavigation :menus="menuStore.menu" />
       </template>
       <template #heading>
-        <span>Select an supply to update</span>
+        <span>Select a supply to update</span>
       </template>
       <template #body>
         <div>

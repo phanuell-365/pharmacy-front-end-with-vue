@@ -54,6 +54,8 @@ import { useRouter } from "vue-router";
 import { useInventoryStore } from "@/stores/app/inventory";
 import type { InventoryDto } from "@/interfaces/inventory";
 import { useConvertExpirationDate } from "@/composables/inventory";
+import { useDrugsStore } from "@/stores/app/drugs";
+import type { DrugDto } from "@/interfaces/drugs";
 
 const TablePlaceholders = defineAsyncComponent(
   () => import("@/components/table/TablePlaceholders.vue")
@@ -67,6 +69,7 @@ const router = useRouter();
 
 const menuStore = useMenuStore();
 const inventoryStore = useInventoryStore();
+const drugsStore = useDrugsStore();
 
 const activeMenu = menuStore.getActiveMenuName;
 
@@ -97,6 +100,7 @@ const error = reactive({
 
 const isLoading = ref(false);
 const inventories: Ref<InventoryDto[]> = ref([]);
+const drugs: Ref<DrugDto[]> = ref([]);
 const convertedInventories: Ref<InventoryDto[]> = ref([]);
 const inventoryAttributes: Ref<string[]> = ref([]);
 
@@ -106,8 +110,10 @@ onMounted(async () => {
   try {
     isLoading.value = true;
     inventories.value = await inventoryStore.loadInventories();
+    drugs.value = await drugsStore.loadDrugs();
     convertedInventories.value = useConvertExpirationDate(inventories).value;
     inventoryAttributes.value = inventoryStore.getInventoryAttributes;
+
     isLoading.value = false;
   } catch (e: any) {
     error.errorState = true;

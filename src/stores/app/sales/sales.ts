@@ -86,6 +86,71 @@ export const useSalesStore = defineStore({
       this.sales = [...sales];
       return sales;
     },
+    loadIssuedSales: async function () {
+      const response = await fetch(`${BASE_URL}/sales?status=issued`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+      });
+
+      const data = await response.json();
+
+      const sales = data as SalesDto[];
+
+      if (!response.ok) {
+        if (data.message === "Unauthorized") {
+          throw new Error(data.message + "! Failed to fetch the sales!");
+        }
+        throw new Error(data.message);
+      }
+      return sales;
+    },
+    loadPendingSales: async function () {
+      const response = await fetch(`${BASE_URL}/sales?status=pending`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+      });
+
+      const data = await response.json();
+
+      const sales = data as SalesDto[];
+
+      if (!response.ok) {
+        if (data.message === "Unauthorized") {
+          throw new Error(data.message + "! Failed to fetch the sales!");
+        }
+        throw new Error(data.message);
+      }
+
+      return sales;
+    },
+    loadCancelledSales: async function () {
+      const response = await fetch(`${BASE_URL}/sales?status=cancelled`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.getToken(),
+        },
+      });
+
+      const data = await response.json();
+
+      const sales = data as SalesDto[];
+
+      if (!response.ok) {
+        if (data.message === "Unauthorized") {
+          throw new Error(data.message + "! Failed to fetch the sales!");
+        }
+        throw new Error(data.message);
+      }
+
+      return sales;
+    },
     loadSalesStatuses: async function () {
       const response = await fetch(`${BASE_URL}/sales?resource=status`, {
         method: "GET",

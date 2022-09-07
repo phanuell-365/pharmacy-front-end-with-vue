@@ -285,10 +285,10 @@ const onFormSubmitHandler = async (event: Event) => {
       });
 
       if (success) {
-        toastRefSuccess.value?.toastText("The sale was created successfully!");
+        toastRefSuccess.value?.toastText("The sale was updated successfully!");
         toastRefSuccess.value?.toastElapsedDuration("Just now");
-        toastRefSuccess.value?.toastHeading("Create Sale");
-        toastRefSuccess.value?.toastName("create-sales");
+        toastRefSuccess.value?.toastHeading("Update Sale");
+        toastRefSuccess.value?.toastName("update-sales");
         toastRefSuccess.value?.show();
       }
     }

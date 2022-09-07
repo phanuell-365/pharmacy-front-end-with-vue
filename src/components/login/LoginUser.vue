@@ -48,6 +48,7 @@ import { defineAsyncComponent, ref } from "vue";
 import { useLoginStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
 import LiveToast from "@/components/toast/LiveToast.vue";
+import moment from "moment";
 // import { OK_ICON } from "@/constants/icons";
 // import FontAwesome from "@/components/icons/FontAwesome.vue";
 
@@ -107,6 +108,8 @@ const toastRefWarning = ref<InstanceType<typeof LiveToast> | null>(null);
 
 const errorState = ref(false);
 
+const momentsFromNowInSec = ref(moment().startOf("seconds").fromNow());
+
 const onFormSubmitHandler = async (event: Event) => {
   const form = event.target as HTMLFormElement;
 
@@ -143,7 +146,7 @@ const onFormSubmitHandler = async (event: Event) => {
         toastRefWarning.value?.toastText(
           `Logged in till ${loginStore.authDuration}`
         );
-        toastRefWarning.value?.toastElapsedDuration("Just now");
+        toastRefWarning.value?.toastElapsedDuration(momentsFromNowInSec);
         toastRefWarning.value?.toastHeading("Authentication");
         toastRefWarning.value?.toastName("authWarning");
         toastRefWarning.value?.show();
@@ -151,7 +154,7 @@ const onFormSubmitHandler = async (event: Event) => {
     } catch (error: any) {
       errorState.value = true;
       toastRefDanger.value?.toastText(`An error occurred! ${error.message}`);
-      toastRefDanger.value?.toastElapsedDuration("Just now");
+      toastRefDanger.value?.toastElapsedDuration(momentsFromNowInSec.value);
       toastRefDanger.value?.toastHeading("Error");
       toastRefDanger.value?.toastName("authError");
       toastRefDanger.value?.show();

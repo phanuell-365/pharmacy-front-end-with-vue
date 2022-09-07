@@ -17,6 +17,8 @@
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "bootstrap": "^5.2.0",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "momentjs": "^2.0.0",
     "pinia": "^2.0.17",
     "vue": "^3.2.37",
     "vue-router": "^4.1.3"

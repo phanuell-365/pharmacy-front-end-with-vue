@@ -4,7 +4,7 @@
       <template #sidebar>
         <SidebarNavigation :menus="menuStore.menu" />
       </template>
-      <template #heading>Select an order to supply</template>
+      <template #heading>Select an order to receive</template>
       <template #body>
         <ViewOrders clickable href="create" root-path="supplies" />
       </template>

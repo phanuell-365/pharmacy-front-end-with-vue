@@ -22,7 +22,9 @@
         <ClickableTable :attributes="suppliesAttributes" :records="supplies" />
       </div>
       <div v-else>
-        <TheTable :attributes="suppliesAttributes" :records="supplies" />
+        <Transition mode="in-out" name="router">
+          <TheTable :attributes="suppliesAttributes" :records="supplies" />
+        </Transition>
       </div>
     </div>
   </section>
@@ -31,7 +33,7 @@
 <script lang="ts" setup>
 import { useMenuStore } from "@/stores/menu";
 import type { Ref } from "vue";
-import { defineAsyncComponent, onMounted, provide, reactive, ref } from "vue";
+import { defineAsyncComponent, provide, reactive, ref } from "vue";
 import TheTable from "@/components/table/TheTable.vue";
 import SimpleModal from "@/components/modal/SimpleModal.vue";
 import ModalButton from "@/components/modal/ModalButton.vue";
@@ -94,28 +96,26 @@ const suppliesAttributes: Ref<string[] | undefined> = ref([]);
 
 const modalRef = ref<InstanceType<typeof SimpleModal> | null>(null);
 
-onMounted(async () => {
-  try {
-    isLoading.value = true;
-    supplies.value = await suppliesStore.loadSupplies();
-    suppliesAttributes.value = suppliesStore.getSuppliesAttributes;
+try {
+  isLoading.value = true;
+  supplies.value = await suppliesStore.loadSupplies();
+  suppliesAttributes.value = suppliesStore.getSuppliesAttributes;
 
-    isLoading.value = false;
-  } catch (e: any) {
-    error.errorState = true;
+  isLoading.value = false;
+} catch (e: any) {
+  error.errorState = true;
 
-    error.message = e.message;
-    console.error(e);
+  error.message = e.message;
+  console.error(e);
 
-    if (error.message.includes("Unauthorized")) {
-      modalRef.value?.modalText(
-        "Have you just logged out? Login to continue ..."
-      );
-      modalRef.value?.modalTitle(error.message);
-      modalRef.value?.show();
-    }
+  if (error.message.includes("Unauthorized")) {
+    modalRef.value?.modalText(
+      "Have you just logged out? Login to continue ..."
+    );
+    modalRef.value?.modalTitle(error.message);
+    modalRef.value?.show();
   }
-});
+}
 
 const onLoginClickButton = () => {
   modalRef.value?.hide();

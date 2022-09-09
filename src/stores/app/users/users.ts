@@ -5,14 +5,16 @@ import _ from "lodash";
 import { USERS_ATTRIBUTES } from "@/constants/users";
 import { SUCCESS } from "@/constants/response";
 
-const USERS: UserDto[] = [];
-const USERSROLES: string[] = [];
+interface State {
+  users: UserDto[];
+  usersRoles: string[];
+}
 
 export const useUsersStore = defineStore({
   id: "users",
-  state: () => ({
-    users: [...USERS],
-    usersRoles: [...USERSROLES],
+  state: (): State => ({
+    users: [],
+    usersRoles: [],
   }),
   getters: {
     usersHasValue: (state) => state.users.length > 0,

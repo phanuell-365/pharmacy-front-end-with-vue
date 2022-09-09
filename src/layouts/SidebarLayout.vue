@@ -21,6 +21,12 @@
 
 <script lang="ts" setup>
 import CardLayout from "./CardLayout.vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+console.log(route.matched);
+console.log(route.name);
 </script>
 
 <style scoped>
@@ -32,10 +38,17 @@ aside {
   top: 0;
   left: 0;
   overflow-x: hidden;
+  /*background-color: #4b6d6a;*/
 }
 
 main {
   height: 100%;
   margin-left: 280px;
+}
+</style>
+
+<style>
+.router-link-active {
+  color: #000 !important;
 }
 </style>

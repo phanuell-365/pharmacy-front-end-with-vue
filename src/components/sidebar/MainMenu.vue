@@ -62,4 +62,16 @@ const props = defineProps<MainMenu>();
 const menuName = _.startCase(props.name);
 </script>
 
-<style scoped></style>
+<style scoped>
+.accordion-item {
+  /*background-color: #cb6056;*/
+  /*background-color: #4b6d6a;*/
+  /*background-color: #fbfafa;*/
+  /*background-color: #e5a69b;*/
+  /*background-color: #9a9691;*/
+  /*background-color: #ce7f70;*/
+  /*background-color: #ebc6aa;*/
+  /*background-color: #c9d1d0;*/
+  /*background-color: #b6738c;*/
+}
+</style>
